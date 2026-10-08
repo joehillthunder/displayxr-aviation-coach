@@ -212,7 +212,7 @@ export class Scene3D {
     this.placeCamera();
     // Pulse the highlight.
     const pulse = 0.55 + 0.45 * Math.sin(now / 260);
-    for (const m of this.highlightMats || []) m.emissiveIntensity = pulse;
+    for (const m of this.highlightMats || []) m.emissiveIntensity = 0.2 + 0.4 * pulse;
     for (const s of this.markers.children) {
       s.material.opacity = 0.5 + 0.5 * pulse;
       s.scale.setScalar(s.userData.size * (0.9 + 0.2 * pulse));
@@ -251,7 +251,7 @@ export class Scene3D {
       target: a,
       yaw: Math.atan2(dir.x, dir.z),
       pitch: Math.asin(clamp(dir.y, -0.98, 0.98)),
-      dist: part?.id === 'propeller' ? 1.6 : 0.9,
+      dist: part?.id === 'propeller' ? 2.3 : 0.9,
     });
     return true;
   }
