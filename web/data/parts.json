@@ -9,7 +9,7 @@
       "name": "Cylinders",
       "aliases": ["cylinder", "jug", "jugs", "cylinder head", "cylinder heads", "cooling fins", "fins"],
       "anchor": [0.33, 0.04, 0.17],
-      "viewDir": [0.7, 0.45, 0.55],
+      "viewDir": [0.6, 0.17, 0.78],
       "description": "Four air-cooled cylinders, two on each side of the crankcase. Finned barrels and heads shed heat into the cooling air; compression is checked cylinder by cylinder.",
       "sources": [
         { "doc": "cfr43d", "loc": "(d)(2)", "topic": "studs and nuts" },
@@ -23,7 +23,7 @@
       "name": "Spark plugs",
       "aliases": ["spark plug", "plugs", "plug", "top plugs", "bottom plugs"],
       "anchor": [0.37, 0.1, 0.17],
-      "viewDir": [0.55, 0.75, 0.35],
+      "viewDir": [0.41, 0.82, 0.41],
       "description": "Two plugs per cylinder, top and bottom, each fed by a different magneto, so one failed circuit still leaves a spark in every cylinder.",
       "sources": [
         { "doc": "amtp", "ch": "4", "page": "4-8", "section": "Ignition Harness (dual-magneto systems)" },
@@ -49,7 +49,7 @@
       "name": "Magnetos",
       "aliases": ["magneto", "mag", "mags", "left magneto", "right magneto"],
       "anchor": [0.09, 0.15, -0.55],
-      "viewDir": [0.35, 0.55, -0.75],
+      "viewDir": [-0.25, 0.77, -0.59],
       "description": "Two engine-driven magnetos on the rear accessory case. Each generates its own ignition current, independent of the aircraft electrical system, and fires one plug in every cylinder.",
       "sources": [
         { "doc": "amtp", "ch": "4", "page": "4-1", "section": "Magneto-Ignition System Operating Principles" },
@@ -63,7 +63,7 @@
       "name": "Oil filter",
       "aliases": ["filter", "spin-on filter", "oil screen", "pressure screen"],
       "anchor": [0.0, 0.03, -0.56],
-      "viewDir": [0.3, 0.35, -0.9],
+      "viewDir": [0.11, 0.91, -0.41],
       "description": "Full-flow spin-on filter on the accessory case. At an oil change it is opened and the pleated element examined for metal that would point to internal wear.",
       "sources": [
         { "doc": "amtp", "ch": "6", "page": "6-7", "section": "Oil Filters" },
@@ -75,8 +75,8 @@
       "id": "oil_sump",
       "name": "Oil sump",
       "aliases": ["sump", "oil pan", "drain plug", "sump drain", "suction screen"],
-      "anchor": [0.0, -0.24, 0.0],
-      "viewDir": [0.45, -0.6, 0.65],
+      "anchor": [0.0, -0.235, -0.15],
+      "viewDir": [-0.32, -0.77, -0.56],
       "description": "The oil reservoir under the crankcase of this wet-sump engine. Its drain plug and suction screen are checked for metal particles and foreign matter.",
       "sources": [
         { "doc": "amtp", "ch": "6", "page": "6-13", "section": "Wet-Sump Lubrication System Operation" },
@@ -102,7 +102,7 @@
       "name": "Induction system and air filter",
       "aliases": ["air filter", "induction", "intake", "air box", "intake tubes", "induction system", "air intake"],
       "anchor": [0.0, -0.3, 0.38],
-      "viewDir": [0.35, -0.35, 0.9],
+      "viewDir": [0.55, -0.42, 0.72],
       "description": "Filtered air box at the front of the engine feeding the intake tubes to each cylinder. Leaks or a clogged filter change how the engine breathes.",
       "sources": [
         { "doc": "amtp", "ch": "3", "page": "3-4", "section": "Induction System Inspection & Maintenance" },
@@ -114,7 +114,7 @@
       "name": "Engine mount and vibration isolators",
       "aliases": ["engine mount", "mount", "mounts", "motor mount", "isolators", "dampeners", "shock mounts", "vibration dampeners"],
       "anchor": [0.19, -0.12, -0.6],
-      "viewDir": [0.85, 0.15, -0.5],
+      "viewDir": [0.91, 0.17, -0.38],
       "description": "Welded tube frame tying the engine to the firewall through rubber vibration isolators. Look for cracked welds, looseness and perished rubber.",
       "sources": [
         { "doc": "cfr43d", "loc": "(d)(4)", "topic": "engine mount" },
@@ -139,7 +139,7 @@
       "name": "Crankcase",
       "aliases": ["case", "engine case", "block", "engine section", "crank case"],
       "anchor": [0.0, 0.12, -0.05],
-      "viewDir": [0.4, 0.8, 0.45],
+      "viewDir": [0.36, 0.92, 0.13],
       "description": "The split case that carries the crankshaft and the cylinders. The engine section is checked here for oil, fuel and other leaks and for loose or missing fasteners.",
       "sources": [
         { "doc": "cfr43d", "loc": "(d)(1)", "topic": "engine section leaks" },

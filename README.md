@@ -106,8 +106,9 @@ flowchart LR
 
 - **One coach, many adapters.** Every adapter (`web/app/instructor/adapters/`) calls the same tool
   implementations (`session.js`), and every reply goes through the same guard (`Coach.ground`). Tests
-  (`test/`) run all four procedures end to end in mock mode and check the guard against invented
-  answers and invented citations.
+  (`test/`) run all four procedures end to end in mock mode, check the guard against invented
+  answers and invented citations, and raycast the real trainer engine to prove every fly-to view
+  actually shows its part.
 - **The server builds the prompt.** The system prompt and tool schemas are generated on the server from
   the committed data (`tools.js`), never accepted from the page; keys live only in `.env`.
 - **Camera rig, metre scale.** The engine is authored in metres, so the rig's real eye separation

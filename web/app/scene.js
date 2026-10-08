@@ -14,8 +14,8 @@ import * as THREE from 'three';
 import { createInline3D, inline3dViewRigSupported, inline3dDisplayModesSupported } from '@displayxr/inline3d';
 import { EyeCamera, cameraRigFromCamera } from '@displayxr/inline3d/three';
 import { buildTrainerEngine } from './trainer-engine.js';
+import { MIN_DIST, focusView, orbitPosition } from './view.js';
 
-const MIN_DIST = 0.55; // metres; nearest the camera (and convergence) may get to its target
 const MAX_DIST = 4.2;
 const FLY_MS = 1100;
 const HOME = { target: [0, -0.02, -0.02], yaw: 0.65, pitch: 0.32, dist: 2.25 };
@@ -42,7 +42,7 @@ export class Scene3D {
 
     this.scene = new THREE.Scene();
     this.scene.background = new THREE.Color(0x14171c);
-    this.scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x2a2622, 1.1));
+    this.scene.add(new THREE.HemisphereLight(0xdfe8ff, 0x5a544c, 1.1));
     const key = new THREE.DirectionalLight(0xffffff, 1.6);
     key.position.set(1.5, 2.5, 2);
     this.scene.add(key);
@@ -54,7 +54,7 @@ export class Scene3D {
       new THREE.MeshStandardMaterial({ color: 0x23272e, roughness: 0.95, metalness: 0 }),
     );
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -0.62;
+    floor.position.y = -1.05; // below the propeller tip (radius ~0.95 m)
     this.scene.add(floor);
 
     this.content = new THREE.Group(); // the loaded asset lives here
@@ -189,10 +189,8 @@ export class Scene3D {
 
   // ── camera ───────────────────────────────────────────────────────────────────────────────────
   placeCamera() {
-    const { target, yaw, pitch, dist } = this.orbit;
-    const cp = Math.cos(pitch);
-    this.cam.position.set(target.x + dist * cp * Math.sin(yaw), target.y + dist * Math.sin(pitch), target.z + dist * cp * Math.cos(yaw));
-    this.cam.lookAt(target);
+    this.cam.position.set(...orbitPosition(this.orbit.target, this.orbit));
+    this.cam.lookAt(this.orbit.target);
   }
 
   tick() {
@@ -245,14 +243,7 @@ export class Scene3D {
   focusPart(id) {
     const a = this.anchors.get(id);
     if (!a) return false;
-    const part = this.k.part(id);
-    const dir = new THREE.Vector3(...(part?.viewDir || [0.5, 0.5, 0.7])).normalize();
-    this.flyTo({
-      target: a,
-      yaw: Math.atan2(dir.x, dir.z),
-      pitch: Math.asin(clamp(dir.y, -0.98, 0.98)),
-      dist: part?.id === 'propeller' ? 2.3 : 0.9,
-    });
+    this.flyTo({ target: a, ...focusView(this.k.part(id)) });
     return true;
   }
 
