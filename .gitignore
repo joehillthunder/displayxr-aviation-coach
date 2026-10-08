@@ -1,0 +1,8 @@
+node_modules/
+web/vendor/
+.env
+*.log
+# Phone scans are large; commit only the manifest and README unless you mean to.
+web/assets/scans/*
+!web/assets/scans/README.md
+!web/assets/scans/manifest.json

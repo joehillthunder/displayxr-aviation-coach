@@ -1,0 +1,434 @@
+{
+  "version": 1,
+  "note": "Training walkthroughs paraphrased from 14 CFR 43 Appendix D and FAA-H-8083-32B. Not approved maintenance data: the aircraft and engine manufacturers' instructions govern every limit, torque and interval.",
+  "procedures": [
+    {
+      "id": "engine_nacelle_100h",
+      "title": "100-hour engine and nacelle inspection",
+      "aliases": ["100 hour", "100-hour", "hundred hour", "engine and nacelle", "annual engine", "nacelle"],
+      "summary": "The engine-and-nacelle portion of a 100-hour inspection on a horizontally opposed engine, item by item as Part 43 Appendix D lays it out.",
+      "steps": [
+        {
+          "id": "e1",
+          "title": "Open up and clean",
+          "parts": ["crankcase", "baffles"],
+          "text": "Remove the cowling and open every inspection panel needed, then clean the engine so leaks and cracks are visible rather than hidden under grime.",
+          "check": "Why clean the engine before inspecting it?",
+          "answer": "Dirt and oil film hide leaks and cracks; a clean engine shows where fresh oil or fuel is coming from.",
+          "sources": [{ "doc": "cfr43d", "loc": "(a)" }]
+        },
+        {
+          "id": "e2",
+          "title": "Look for leaks",
+          "parts": ["crankcase", "oil_sump"],
+          "text": "Inspect the engine section for signs of excessive oil, fuel or hydraulic leakage and trace each one back to its source.",
+          "check": "Finding a wet streak is not the end of the check. What else must you find?",
+          "answer": "The source of the leak.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(1)" }]
+        },
+        {
+          "id": "e3",
+          "title": "Studs and nuts",
+          "parts": ["cylinders", "crankcase"],
+          "text": "Check cylinder hold-down and case studs and nuts for improper torque and obvious defects such as cracks, stripped threads or missing safetying.",
+          "check": "What two conditions does Appendix D name for studs and nuts?",
+          "answer": "Improper torquing and obvious defects.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(2)" }]
+        },
+        {
+          "id": "e4",
+          "title": "Cylinder compression",
+          "parts": ["cylinders"],
+          "text": "Run a differential compression test on each cylinder, ideally soon after shutdown while rings and walls are still oiled. Weak compression calls for a closer look at the cylinder's internal condition.",
+          "check": "Why test compression soon after the engine has run?",
+          "answer": "The rings and cylinder walls are still freshly lubricated, so the reading reflects the cylinder rather than dry rings.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(3)" },
+            { "doc": "amtp", "ch": "10", "page": "10-39", "section": "Cylinder Compression Tests" }
+          ]
+        },
+        {
+          "id": "e5",
+          "title": "Screens, filter and sump plug",
+          "parts": ["oil_filter", "oil_sump"],
+          "text": "Check the oil screens, the filter element and the sump drain plug for metal particles or foreign matter, which can be the first sign of internal wear.",
+          "check": "What does metal in the filter or on the screens suggest?",
+          "answer": "Possible internal wear or damage that needs to be investigated.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(3)" },
+            { "doc": "amtp", "ch": "6", "page": "6-16", "section": "Pressure & Scavenge Oil Screens" }
+          ]
+        },
+        {
+          "id": "e6",
+          "title": "Engine mount",
+          "parts": ["engine_mounts"],
+          "text": "Inspect the mount for cracks, especially at welds, for looseness of the mount, and for looseness of the engine on the mount.",
+          "check": "Name the three things Appendix D asks you to look for at the engine mount.",
+          "answer": "Cracks, looseness of mounting, and looseness of the engine to the mount.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(4)" }]
+        },
+        {
+          "id": "e7",
+          "title": "Vibration isolators",
+          "parts": ["engine_mounts"],
+          "text": "Check the flexible vibration dampeners for poor condition and deterioration: cracked, swollen or oil-soaked rubber.",
+          "check": "What condition of the rubber isolators should you reject?",
+          "answer": "Poor condition or deterioration.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(5)" }]
+        },
+        {
+          "id": "e8",
+          "title": "Lines, hoses and clamps",
+          "parts": ["induction_air_filter", "oil_filter"],
+          "text": "Go over every line, hose and clamp for leaks, poor condition and looseness, including the induction hoses and oil lines.",
+          "check": "What three conditions are you checking lines and hoses for?",
+          "answer": "Leaks, improper condition, and looseness.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(7)" }]
+        },
+        {
+          "id": "e9",
+          "title": "Exhaust system",
+          "parts": ["exhaust_system"],
+          "text": "Inspect the stacks, collectors, muffler and heat exchanger for cracks, defects and poor attachment. A flat gray or sooty streak near a joint usually marks an exhaust leak.",
+          "check": "What does a flat gray or sooty black streak on an exhaust pipe usually indicate?",
+          "answer": "An exhaust leak at or near that joint.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(8)" },
+            { "doc": "amtp", "ch": "3", "page": "3-23", "section": "Exhaust System Inspection" }
+          ]
+        },
+        {
+          "id": "e10",
+          "title": "Accessories",
+          "parts": ["magnetos", "oil_filter"],
+          "text": "Check each accessory on the accessory case, such as the magnetos and the oil filter, for apparent defects in the security of its mounting.",
+          "check": "For accessories, what is Appendix D mainly concerned with?",
+          "answer": "Apparent defects in security of mounting.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(9)" }]
+        },
+        {
+          "id": "e10b",
+          "title": "Engine controls",
+          "parts": ["induction_air_filter"],
+          "text": "Work the throttle and mixture controls where they connect at the engine: look for defects, confirm full and correct travel, and check the attachments are properly safetied.",
+          "check": "What three things does Appendix D ask you to check on the engine controls?",
+          "answer": "Defects, improper travel, and improper safetying.",
+          "sources": [{ "doc": "cfr43d", "loc": "(d)(6)" }]
+        },
+        {
+          "id": "e11",
+          "title": "Ignition system",
+          "parts": ["ignition_harness", "magnetos", "spark_plugs"],
+          "text": "Inspect the ignition harness and magnetos for chafed or cracked leads, loose terminals, moisture and insecure attachment.",
+          "check": "Name one common cause of ignition trouble the handbook links to moisture.",
+          "answer": "Moisture lowers insulation resistance and can short part of the magneto's output to ground.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(10)" },
+            { "doc": "amtp", "ch": "4", "page": "4-26", "section": "Reciprocating Engine Ignition System Maintenance & Inspection" }
+          ]
+        },
+        {
+          "id": "e12",
+          "title": "Induction system and air filter",
+          "parts": ["induction_air_filter"],
+          "text": "Check the induction system for cracks, leaks and security of mounting, make sure nothing loose can enter the intake, and service the air filter if it is dirty.",
+          "check": "Why keep rags and paper away from the induction system?",
+          "answer": "They can be drawn in and restrict the airflow.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(10)" },
+            { "doc": "amtp", "ch": "3", "page": "3-4", "section": "Induction System Inspection & Maintenance" }
+          ]
+        },
+        {
+          "id": "e13",
+          "title": "Baffles and cooling fins",
+          "parts": ["baffles", "cylinders"],
+          "text": "Check the baffles and seals for cracks, tears and slipped seals, and the cylinder fins for cracks and broken areas; broken fin area beyond the manufacturer's limit means cylinder removal.",
+          "check": "What job do the baffles do?",
+          "answer": "They force cooling air into close contact with the cylinders and fins instead of letting it bypass them.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(10)" },
+            { "doc": "amtp", "ch": "6", "page": "6-36", "section": "Cylinder Baffle & Deflector System Inspection" }
+          ]
+        },
+        {
+          "id": "e14",
+          "title": "Cowling",
+          "parts": ["baffles"],
+          "text": "Inspect the cowling panels, latches and air seals for cracks and defects before closing up.",
+          "check": "What does Appendix D ask you to find on the cowling?",
+          "answer": "Cracks and defects.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(11)" },
+            { "doc": "amtp", "ch": "6", "page": "6-36", "section": "Maintenance of Engine Cowling" }
+          ]
+        },
+        {
+          "id": "e15",
+          "title": "Engine run-up",
+          "parts": ["magnetos", "spark_plugs"],
+          "text": "After reassembly, run the engine and perform the ignition (magneto) check, comparing the rpm drop on each magneto against the engine's known standard.",
+          "check": "What does a magneto check compare?",
+          "answer": "The rpm drop on each single magneto against a known standard for that engine.",
+          "sources": [{ "doc": "amtp", "ch": "10", "page": "10-26", "section": "ignition system operational check (magneto check)" }]
+        }
+      ]
+    },
+    {
+      "id": "spark_plug_inspection",
+      "title": "Spark plug inspection",
+      "aliases": ["spark plug", "spark plugs", "plugs", "plug inspection"],
+      "summary": "Removing, reading, servicing and reinstalling the spark plugs.",
+      "steps": [
+        {
+          "id": "s1",
+          "title": "Make the ignition safe",
+          "parts": ["magnetos"],
+          "text": "Confirm the ignition switch is off so the engine cannot fire accidentally while you work. The run-up check that the engine cuts out completely at 'off' is what shows both magnetos actually ground out.",
+          "check": "Before you touch the plugs, what switch must be confirmed off?",
+          "answer": "The ignition (magneto) switch.",
+          "sources": [
+            { "doc": "amtp", "ch": "10", "page": "10-39", "section": "Cylinder Compression Tests" },
+            { "doc": "amtp", "ch": "10", "page": "10-26", "section": "ignition system operational check (magneto check)" }
+          ]
+        },
+        {
+          "id": "s2",
+          "title": "Disconnect the lead",
+          "parts": ["ignition_harness", "spark_plugs"],
+          "text": "Loosen the lead's coupling nut and pull the lead straight out along the plug barrel; a side load can crack the barrel insulator or the lead terminal.",
+          "check": "Why pull the lead straight out instead of at an angle?",
+          "answer": "A side load can damage the barrel insulator and the ceramic lead terminal.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-35", "section": "Spark Plug Removal" }]
+        },
+        {
+          "id": "s3",
+          "title": "Remove and tray the plugs",
+          "parts": ["spark_plugs"],
+          "text": "Remove each plug with the correct deep socket held square, and put it in a numbered tray so you know which cylinder and position it came from.",
+          "check": "Why use a numbered tray?",
+          "answer": "It protects the plugs and records which cylinder and position each came from, which helps diagnosis and rotation.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-35", "section": "Spark Plug Removal" }]
+        },
+        {
+          "id": "s4",
+          "title": "Read the firing ends",
+          "parts": ["spark_plugs", "cylinders"],
+          "text": "Compare the firing ends. Carbon, oil, lead and graphite fouling each point to a different cause, and a plug that differs from the rest points at that cylinder.",
+          "check": "Name two kinds of spark plug fouling.",
+          "answer": "Any two of carbon, oil, lead or graphite fouling.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-33", "section": "Spark Plug Inspection & Maintenance" }]
+        },
+        {
+          "id": "s5",
+          "title": "Visual inspection",
+          "parts": ["spark_plugs"],
+          "text": "Check the shell and barrel threads for damage, the shielding barrel for corrosion and cracks, the firing end for insulator cracks or chips and worn electrodes, and the hex for rounding.",
+          "check": "What is the first step in servicing a used spark plug?",
+          "answer": "A visual inspection.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-36", "section": "Spark Plug Reconditioning Service" }]
+        },
+        {
+          "id": "s6",
+          "title": "Clean and test",
+          "parts": ["spark_plugs"],
+          "text": "Clean the plugs with the approved process for that plug type, then fire them on a tester under pressure. Plugs that fail are replaced.",
+          "check": "Why does the plug tester pressurize the firing end?",
+          "answer": "To simulate cylinder pressure while the plug fires.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-37", "section": "Spark Plug Reconditioning Service" }]
+        },
+        {
+          "id": "s7",
+          "title": "Check the gap",
+          "parts": ["spark_plugs"],
+          "text": "Measure the gap with a round wire gauge held parallel to the centre electrode. Do not install a plug outside the specified range.",
+          "check": "Why a round wire gauge instead of a flat feeler?",
+          "answer": "The ground electrodes are contoured to the round centre electrode, so a flat gauge reads wrong.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-38", "section": "Inspection Prior to Installation" }]
+        },
+        {
+          "id": "s8",
+          "title": "Prepare the bushings",
+          "parts": ["spark_plugs", "cylinders"],
+          "text": "Clean the cylinder's plug bushings or thread inserts, wipe the gasket seat, confirm the plug is the approved type, and fit a new gasket.",
+          "check": "What part should always be new when a plug goes back in?",
+          "answer": "The spark plug gasket.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-37", "section": "Inspection Prior to Installation" }]
+        },
+        {
+          "id": "s9",
+          "title": "Install and torque",
+          "parts": ["spark_plugs"],
+          "text": "Put antiseize on the first threads only, keep it off the electrodes, start the plug by hand, then torque it to the specified value.",
+          "check": "What happens if antiseize gets onto the electrodes?",
+          "answer": "Its graphite conducts electricity and can short the plug.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-38", "section": "Spark Plug Installation" }]
+        },
+        {
+          "id": "s10",
+          "title": "Reconnect the lead",
+          "parts": ["ignition_harness"],
+          "text": "Clean the lead terminal sleeve and seal, inspect it for cracks or scratches, replace a damaged sleeve, and reconnect.",
+          "check": "What do you inspect the terminal sleeve for?",
+          "answer": "Cracks and scratches, or heavy staining.",
+          "sources": [{ "doc": "amtp", "ch": "4", "page": "4-38", "section": "Spark Plug Lead Installation" }]
+        },
+        {
+          "id": "s11",
+          "title": "Ground run",
+          "parts": ["magnetos"],
+          "text": "Finish with a run-up and magneto check to confirm every plug is firing.",
+          "check": "Which check confirms the plugs and harness on both magnetos?",
+          "answer": "The ignition (magneto) check during run-up.",
+          "sources": [{ "doc": "amtp", "ch": "10", "page": "10-26", "section": "ignition system operational check (magneto check)" }]
+        }
+      ]
+    },
+    {
+      "id": "oil_filter_inspection",
+      "title": "Oil and filter inspection",
+      "aliases": ["oil change", "oil and filter", "oil filter", "filter inspection", "oil"],
+      "summary": "Draining the oil, opening the filter for metal, cleaning the sump screen, and refilling.",
+      "steps": [
+        {
+          "id": "o1",
+          "title": "Drain into a clean container",
+          "parts": ["oil_sump"],
+          "text": "Drain the oil warm through the sump drain into a clean container so the oil itself can be examined; a dirty container gives a false picture of the engine.",
+          "check": "Why must the drain container be clean?",
+          "answer": "Existing contamination would give a false indication of the engine's condition.",
+          "sources": [{ "doc": "amtp", "ch": "6", "page": "6-15", "section": "Pressure & Scavenge Oil Screens" }]
+        },
+        {
+          "id": "o2",
+          "title": "Remove the filter",
+          "parts": ["oil_filter"],
+          "text": "Cut the safety wire and remove the filter using its wrench pad.",
+          "check": "What has to be removed before the filter will turn?",
+          "answer": "The safety wire.",
+          "sources": [{ "doc": "amtp", "ch": "6", "page": "6-17", "section": "Oil Filter Removal Canister Type Housing" }]
+        },
+        {
+          "id": "o3",
+          "title": "Open the element",
+          "parts": ["oil_filter"],
+          "text": "Open the filter, unfold the paper element and examine what it trapped. Metal particles, shavings or flakes point to wear and must be followed up.",
+          "check": "What are you looking for inside the element?",
+          "answer": "Metal particles, shavings or flakes.",
+          "sources": [{ "doc": "amtp", "ch": "6", "page": "6-17", "section": "Oil Filter/Screen Content Inspection" }]
+        },
+        {
+          "id": "o4",
+          "title": "Sump screen and drain plug",
+          "parts": ["oil_sump"],
+          "text": "Remove, inspect and clean the sump suction screen, and check the drain plug for metal or foreign matter.",
+          "check": "Which Appendix D item covers metal on screens and sump drain plugs?",
+          "answer": "Item (d)(3), internal engine.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(3)" },
+            { "doc": "amtp", "ch": "6", "page": "6-16", "section": "Pressure & Scavenge Oil Screens" }
+          ]
+        },
+        {
+          "id": "o5",
+          "title": "Install a new filter",
+          "parts": ["oil_filter"],
+          "text": "Install the new filter, torque it to the value in the maintenance manual and safety it as required.",
+          "check": "Where does the filter torque value come from?",
+          "answer": "The applicable maintenance manual.",
+          "sources": [{ "doc": "amtp", "ch": "6", "page": "6-16", "section": "Pressure & Scavenge Oil Screens" }]
+        },
+        {
+          "id": "o6",
+          "title": "Refill and leak-check",
+          "parts": ["oil_sump", "oil_filter"],
+          "text": "Refill with the approved oil grade and quantity, run the engine, then check the filter and drain plug for leaks.",
+          "check": "What do you check after the engine run?",
+          "answer": "The filter and drain plug for leaks.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(d)(1)" },
+            { "doc": "amtp", "ch": "6", "page": "6-17", "section": "Recommendations for Changing Oil" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "propeller_inspection",
+      "title": "Propeller inspection",
+      "aliases": ["prop", "propeller", "prop inspection", "blades"],
+      "summary": "The propeller group of a 100-hour inspection for a fixed-pitch metal propeller and spinner.",
+      "steps": [
+        {
+          "id": "p1",
+          "title": "Oil and grease",
+          "parts": ["propeller", "spinner"],
+          "text": "Look over the blades, spinner and other external surfaces for excessive oil or grease deposits, which can mean a leak at the hub or crankshaft seal.",
+          "check": "What can oil on the spinner indicate?",
+          "answer": "Oil leakage at the hub or crankshaft seal area.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(h)(1)" },
+            { "doc": "amtp", "ch": "7", "page": "7-20", "section": "Propeller Inspection & Maintenance" }
+          ]
+        },
+        {
+          "id": "p2",
+          "title": "Nicks, scratches and cracks",
+          "parts": ["propeller"],
+          "text": "Inspect the blades, especially the leading edges, for nicks, scratches, cracks and other flaws, using a magnifier where needed.",
+          "check": "Why do small nicks matter on a metal blade?",
+          "answer": "They concentrate stress and can start fatigue cracks.",
+          "sources": [
+            { "doc": "amtp", "ch": "7", "page": "7-20", "section": "Propeller Inspection & Maintenance" },
+            { "doc": "amtp", "ch": "7", "page": "7-21", "section": "Metal Propeller Inspection" }
+          ]
+        },
+        {
+          "id": "p3",
+          "title": "Cracks are rejections",
+          "parts": ["propeller"],
+          "text": "On an aluminum blade a transverse crack of any size is cause for rejection. Confirm a suspected crack with dye penetrant; repairs follow the propeller manufacturer's limits.",
+          "check": "On an aluminum blade, how large a transverse crack is acceptable?",
+          "answer": "None: a transverse crack of any size is cause for rejection.",
+          "sources": [{ "doc": "amtp", "ch": "7", "page": "7-21", "section": "Aluminum Propeller Inspection" }]
+        },
+        {
+          "id": "p4",
+          "title": "Spinner",
+          "parts": ["spinner"],
+          "text": "Check the spinner shell and bulkhead for cracks and the attaching screws for tightness.",
+          "check": "What fasteners does the handbook single out on the spinner?",
+          "answer": "The spinner or dome shell attaching screws.",
+          "sources": [{ "doc": "amtp", "ch": "7", "page": "7-20", "section": "Propeller Inspection & Maintenance" }]
+        },
+        {
+          "id": "p5",
+          "title": "Mounting bolts",
+          "parts": ["propeller", "spinner"],
+          "text": "Check the propeller mounting bolts for proper torque and safetying.",
+          "check": "Which Appendix D item covers propeller bolts?",
+          "answer": "Item (h)(2): improper torquing and lack of safetying.",
+          "sources": [{ "doc": "cfr43d", "loc": "(h)(2)" }]
+        },
+        {
+          "id": "p6",
+          "title": "Tracking",
+          "parts": ["propeller"],
+          "text": "If there is vibration or blade damage, check blade tracking: each tip should pass the same reference point within the allowed tolerance as the propeller is turned slowly by hand.",
+          "check": "What does blade tracking compare?",
+          "answer": "The tip positions of the blades relative to each other.",
+          "sources": [{ "doc": "amtp", "ch": "7", "page": "7-22", "section": "Blade Tracking" }]
+        },
+        {
+          "id": "p7",
+          "title": "Tachometer",
+          "parts": ["propeller"],
+          "text": "Confirm the tachometer is accurate. An inaccurate tachometer can let the propeller run in a restricted rpm range without anyone knowing.",
+          "check": "Why is the tachometer part of the propeller inspection?",
+          "answer": "An inaccurate tachometer can allow operation in a restricted rpm range.",
+          "sources": [{ "doc": "amtp", "ch": "7", "page": "7-21", "section": "Metal Propeller Inspection" }]
+        }
+      ]
+    }
+  ]
+}

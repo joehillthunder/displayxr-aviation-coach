@@ -1,0 +1,22 @@
+{
+  "note": "Citations point at public FAA material. Step text in procedures.json is paraphrased for training; it is not approved maintenance data.",
+  "documents": {
+    "cfr43d": {
+      "title": "14 CFR Part 43, Appendix D: Scope and Detail of Items To Be Included in Annual and 100-Hour Inspections",
+      "short": "14 CFR 43 App. D",
+      "url": "https://www.ecfr.gov/current/title-14/part-43/appendix-Appendix%20D%20to%20Part%2043"
+    },
+    "amtp": {
+      "title": "FAA-H-8083-32B, Aviation Maintenance Technician Handbook: Powerplant (2023)",
+      "short": "FAA-H-8083-32B",
+      "url": "https://www.faa.gov/regulationspolicies/handbooksmanuals/aviation/faa-h-8083-32b-aviation-maintenance-technician",
+      "chapters": {
+        "3": { "title": "Induction & Exhaust Systems", "url": "https://www.faa.gov/sites/faa.gov/files/05_amtp_ch3.pdf" },
+        "4": { "title": "Engine Ignition & Electrical Systems", "url": "https://www.faa.gov/sites/faa.gov/files/06_amtp_ch4.pdf" },
+        "6": { "title": "Lubrication & Cooling Systems", "url": "https://www.faa.gov/sites/faa.gov/files/08_amtp_ch6.pdf" },
+        "7": { "title": "Propellers", "url": "https://www.faa.gov/sites/faa.gov/files/09_amtp_ch7.pdf" },
+        "10": { "title": "Engine Maintenance & Operation", "url": "https://www.faa.gov/sites/faa.gov/files/12_amtp_ch10_0.pdf" }
+      }
+    }
+  }
+}

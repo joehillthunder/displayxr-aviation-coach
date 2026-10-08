@@ -1,0 +1,26 @@
+{
+  "name": "displayxr-aviation-coach",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Glasses-free 3D aircraft maintenance trainer: an AI instructor walks a trainee through a 100-hour engine inspection on a DisplayXR display, or in 2D in any browser.",
+  "license": "Apache-2.0",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "postinstall": "node scripts/vendor.mjs",
+    "vendor": "node scripts/vendor.mjs",
+    "start": "node server/server.mjs",
+    "mock": "node cli/coach.mjs",
+    "test": "node --test \"test/*.test.mjs\""
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.132.1"
+  },
+  "devDependencies": {
+    "@displayxr/inline3d": "1.37.1",
+    "@sparkjsdev/spark": "2.1.0",
+    "three": "0.180.0"
+  }
+}

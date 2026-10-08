@@ -1,0 +1,175 @@
+{
+  "version": 1,
+  "units": "metres",
+  "frame": "Engine frame: +x to the engine's right (viewed from the front), +y up, +z forward toward the propeller. Origin at the crankcase centre.",
+  "note": "anchor = where the label and fly-to point sit on the built-in trainer engine. anchors.<assetId> overrides it for another asset (a scan or a glTF); write those with the calibration tool (press K).",
+  "parts": [
+    {
+      "id": "cylinders",
+      "name": "Cylinders",
+      "aliases": ["cylinder", "jug", "jugs", "cylinder head", "cylinder heads", "cooling fins", "fins"],
+      "anchor": [0.33, 0.04, 0.17],
+      "viewDir": [0.7, 0.45, 0.55],
+      "description": "Four air-cooled cylinders, two on each side of the crankcase. Finned barrels and heads shed heat into the cooling air; compression is checked cylinder by cylinder.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(d)(2)", "topic": "studs and nuts" },
+        { "doc": "cfr43d", "loc": "(d)(3)", "topic": "cylinder compression" },
+        { "doc": "amtp", "ch": "10", "page": "10-39", "section": "Cylinder Compression Tests" },
+        { "doc": "amtp", "ch": "6", "page": "6-36", "section": "Engine Cylinder Cooling Fin Inspection" }
+      ]
+    },
+    {
+      "id": "spark_plugs",
+      "name": "Spark plugs",
+      "aliases": ["spark plug", "plugs", "plug", "top plugs", "bottom plugs"],
+      "anchor": [0.37, 0.1, 0.17],
+      "viewDir": [0.55, 0.75, 0.35],
+      "description": "Two plugs per cylinder, top and bottom, each fed by a different magneto, so one failed circuit still leaves a spark in every cylinder.",
+      "sources": [
+        { "doc": "amtp", "ch": "4", "page": "4-8", "section": "Ignition Harness (dual-magneto systems)" },
+        { "doc": "amtp", "ch": "4", "page": "4-33", "section": "Spark Plug Inspection & Maintenance" },
+        { "doc": "amtp", "ch": "4", "page": "4-35", "section": "Spark Plug Removal" }
+      ]
+    },
+    {
+      "id": "ignition_harness",
+      "name": "Ignition harness",
+      "aliases": ["harness", "ignition leads", "plug leads", "plug wires", "leads", "ignition wires"],
+      "anchor": [0.2, 0.15, -0.2],
+      "viewDir": [0.4, 0.85, -0.35],
+      "description": "Shielded high-tension leads that carry each magneto's output to its spark plugs. Chafing, cracked insulation and loose terminals are the usual findings.",
+      "sources": [
+        { "doc": "amtp", "ch": "4", "page": "4-7", "section": "Ignition Harness" },
+        { "doc": "amtp", "ch": "4", "page": "4-33", "section": "Replacement of Ignition Harness" },
+        { "doc": "cfr43d", "loc": "(d)(10)", "topic": "all systems" }
+      ]
+    },
+    {
+      "id": "magnetos",
+      "name": "Magnetos",
+      "aliases": ["magneto", "mag", "mags", "left magneto", "right magneto"],
+      "anchor": [0.09, 0.14, -0.44],
+      "viewDir": [0.35, 0.55, -0.75],
+      "description": "Two engine-driven magnetos on the rear accessory case. Each generates its own ignition current, independent of the aircraft electrical system, and fires one plug in every cylinder.",
+      "sources": [
+        { "doc": "amtp", "ch": "4", "page": "4-1", "section": "Magneto-Ignition System Operating Principles" },
+        { "doc": "amtp", "ch": "4", "page": "4-26", "section": "Reciprocating Engine Ignition System Maintenance & Inspection" },
+        { "doc": "amtp", "ch": "10", "page": "10-26", "section": "ignition system operational check (magneto check)" },
+        { "doc": "cfr43d", "loc": "(d)(9)", "topic": "accessories" }
+      ]
+    },
+    {
+      "id": "oil_filter",
+      "name": "Oil filter",
+      "aliases": ["filter", "spin-on filter", "oil screen", "pressure screen"],
+      "anchor": [0.0, 0.03, -0.5],
+      "viewDir": [0.3, 0.35, -0.9],
+      "description": "Full-flow spin-on filter on the accessory case. At an oil change it is opened and the pleated element examined for metal that would point to internal wear.",
+      "sources": [
+        { "doc": "amtp", "ch": "6", "page": "6-7", "section": "Oil Filters" },
+        { "doc": "amtp", "ch": "6", "page": "6-17", "section": "Oil Filter/Screen Content Inspection" },
+        { "doc": "cfr43d", "loc": "(d)(3)", "topic": "metal particles on screens" }
+      ]
+    },
+    {
+      "id": "oil_sump",
+      "name": "Oil sump",
+      "aliases": ["sump", "oil pan", "drain plug", "sump drain", "suction screen"],
+      "anchor": [0.0, -0.24, 0.0],
+      "viewDir": [0.45, -0.6, 0.65],
+      "description": "The oil reservoir under the crankcase of this wet-sump engine. Its drain plug and suction screen are checked for metal particles and foreign matter.",
+      "sources": [
+        { "doc": "amtp", "ch": "6", "page": "6-13", "section": "Wet-Sump Lubrication System Operation" },
+        { "doc": "amtp", "ch": "6", "page": "6-15", "section": "Pressure & Scavenge Oil Screens" },
+        { "doc": "cfr43d", "loc": "(d)(3)", "topic": "sump drain plugs" }
+      ]
+    },
+    {
+      "id": "exhaust_system",
+      "name": "Exhaust system",
+      "aliases": ["exhaust", "exhaust stacks", "stacks", "muffler", "heat exchanger", "exhaust pipes"],
+      "anchor": [0.24, -0.26, 0.05],
+      "viewDir": [0.65, -0.55, 0.5],
+      "description": "Down-stacks from each cylinder into collectors and a muffler shrouded by a heat exchanger. Cracks here are a fire and carbon-monoxide hazard, so it gets close attention.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(d)(8)", "topic": "exhaust stacks" },
+        { "doc": "amtp", "ch": "3", "page": "3-22", "section": "Reciprocating Engine Exhaust System Maintenance Practices" },
+        { "doc": "amtp", "ch": "3", "page": "3-23", "section": "Exhaust System Inspection" }
+      ]
+    },
+    {
+      "id": "induction_air_filter",
+      "name": "Induction system and air filter",
+      "aliases": ["air filter", "induction", "intake", "air box", "intake tubes", "induction system", "air intake"],
+      "anchor": [0.0, -0.3, 0.38],
+      "viewDir": [0.35, -0.35, 0.9],
+      "description": "Filtered air box at the front of the engine feeding the intake tubes to each cylinder. Leaks or a clogged filter change how the engine breathes.",
+      "sources": [
+        { "doc": "amtp", "ch": "3", "page": "3-4", "section": "Induction System Inspection & Maintenance" },
+        { "doc": "cfr43d", "loc": "(d)(7)", "topic": "lines, hoses, and clamps" }
+      ]
+    },
+    {
+      "id": "engine_mounts",
+      "name": "Engine mount and vibration isolators",
+      "aliases": ["engine mount", "mount", "mounts", "motor mount", "isolators", "dampeners", "shock mounts", "vibration dampeners"],
+      "anchor": [0.19, -0.12, -0.6],
+      "viewDir": [0.85, 0.15, -0.5],
+      "description": "Welded tube frame tying the engine to the firewall through rubber vibration isolators. Look for cracked welds, looseness and perished rubber.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(d)(4)", "topic": "engine mount" },
+        { "doc": "cfr43d", "loc": "(d)(5)", "topic": "flexible vibration dampeners" }
+      ]
+    },
+    {
+      "id": "baffles",
+      "name": "Cooling baffles",
+      "aliases": ["baffle", "baffling", "air seals", "cooling baffles", "deflectors"],
+      "anchor": [-0.3, 0.14, 0.0],
+      "viewDir": [-0.6, 0.75, 0.3],
+      "description": "Sheet-metal baffles and rubber seals that force cooling air down through the cylinder fins instead of around them. A torn seal or bent baffle can overheat a cylinder.",
+      "sources": [
+        { "doc": "amtp", "ch": "6", "page": "6-36", "section": "Cylinder Baffle & Deflector System Inspection" },
+        { "doc": "amtp", "ch": "6", "page": "6-34", "section": "Reciprocating Engine Cooling System Maintenance" },
+        { "doc": "cfr43d", "loc": "(d)(11)", "topic": "cowling" }
+      ]
+    },
+    {
+      "id": "crankcase",
+      "name": "Crankcase",
+      "aliases": ["case", "engine case", "block", "engine section", "crank case"],
+      "anchor": [0.0, 0.12, -0.05],
+      "viewDir": [0.4, 0.8, 0.45],
+      "description": "The split case that carries the crankshaft and the cylinders. The engine section is checked here for oil, fuel and other leaks and for loose or missing fasteners.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(d)(1)", "topic": "engine section leaks" },
+        { "doc": "cfr43d", "loc": "(d)(2)", "topic": "studs and nuts" }
+      ]
+    },
+    {
+      "id": "propeller",
+      "name": "Propeller",
+      "aliases": ["prop", "blades", "blade", "propeller blades", "prop blades"],
+      "anchor": [0.0, 0.55, 0.5],
+      "viewDir": [0.35, 0.3, 0.9],
+      "description": "Two-blade metal propeller bolted to the crankshaft flange. Small nicks concentrate stress and can grow into fatigue cracks, so blades get a close visual inspection.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(h)(1)", "topic": "propeller assembly" },
+        { "doc": "cfr43d", "loc": "(h)(2)", "topic": "bolts" },
+        { "doc": "amtp", "ch": "7", "page": "7-20", "section": "Propeller Inspection & Maintenance" },
+        { "doc": "amtp", "ch": "7", "page": "7-21", "section": "Metal Propeller Inspection" }
+      ]
+    },
+    {
+      "id": "spinner",
+      "name": "Spinner",
+      "aliases": ["prop spinner", "nose cone", "spinner dome", "dome"],
+      "anchor": [0.0, 0.0, 0.62],
+      "viewDir": [0.4, 0.25, 0.9],
+      "description": "Streamlined cover over the propeller hub. Its attaching screws, bulkhead and shell are checked for tightness and cracks.",
+      "sources": [
+        { "doc": "amtp", "ch": "7", "page": "7-20", "section": "Propeller Inspection & Maintenance" }
+      ]
+    }
+  ]
+}
