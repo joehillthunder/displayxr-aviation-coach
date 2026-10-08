@@ -36,11 +36,10 @@
   https://3d.si.edu/object/3d/1903-wright-flyer:d8c62e5e-4ebc-11ea-b77f-2e728ce88125
   "Restrictions & Rights: CC0", "Metadata Usage: CC0" (checked on record page).
   GLB: https://3d-api.si.edu/content/document/3d_package:d8c62e5e-4ebc-11ea-b77f-2e728ce88125/resources/1903WrightFlyer-100k-2048_std_draco.glb
-  (630,156 bytes, Draco, cm scale). No CORS header, so it must be committed rather than hotlinked. NOT YET DOWNLOADED (needs user OK).
+  (630,156 bytes, Draco, cm scale). No CORS header, so it would have to be committed rather than hotlinked. Not bundled.
 - Packard DR-980 (nasm_A19710893000) is CC0 but has images only, no 3D model.
 - No CC0 opposed-engine 3D model found, so the default fallback is a procedural unbranded opposed-4 trainer engine (own code, Apache-2.0).
 
-## Open questions for the user
-- "Muse" adapter: which API? (not guessed; ship as a stub until specified)
-- OK to download and commit the Wright Flyer GLB?
-- Node is not installed; setup-windows.bat should install Node LTS (winget) — confirm.
+## Open items
+- "Muse" adapter: API details still needed; it ships as a stub (`POST /api/muse` returns 501).
+- Wright Flyer GLB: CC0 and recorded in web/assets/LICENSES.md, but not bundled (wrong engine type for these lessons).
