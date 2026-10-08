@@ -1,0 +1,20 @@
+name: Tests
+
+on:
+  pull_request:
+  push:
+    branches-ignore: [main] # main is tested by the Pages workflow before it deploys
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm test
+      - name: Mock CLI end to end
+        run: printf 'start spark plug inspection\nnext\nwhere is the oil filter\nwhat is the capital of France\n' | node cli/coach.mjs
