@@ -48,7 +48,7 @@
       "id": "magnetos",
       "name": "Magnetos",
       "aliases": ["magneto", "mag", "mags", "left magneto", "right magneto"],
-      "anchor": [0.09, 0.14, -0.44],
+      "anchor": [0.09, 0.15, -0.55],
       "viewDir": [0.35, 0.55, -0.75],
       "description": "Two engine-driven magnetos on the rear accessory case. Each generates its own ignition current, independent of the aircraft electrical system, and fires one plug in every cylinder.",
       "sources": [
@@ -62,7 +62,7 @@
       "id": "oil_filter",
       "name": "Oil filter",
       "aliases": ["filter", "spin-on filter", "oil screen", "pressure screen"],
-      "anchor": [0.0, 0.03, -0.5],
+      "anchor": [0.0, 0.03, -0.56],
       "viewDir": [0.3, 0.35, -0.9],
       "description": "Full-flow spin-on filter on the accessory case. At an oil change it is opened and the pleated element examined for metal that would point to internal wear.",
       "sources": [

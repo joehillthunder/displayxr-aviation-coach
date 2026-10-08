@@ -1,0 +1,215 @@
+:root {
+  --bg: #0f1216;
+  --panel: #171b21;
+  --card: #1d222a;
+  --line: #2c333d;
+  --text: #e7eaee;
+  --muted: #9aa3ad;
+  --accent: #ffb020;
+  --accent-ink: #1a1200;
+  --ok: #4ade80;
+  --bad: #f87171;
+  --warn-bg: #3a2a00;
+  --warn-ink: #ffd27a;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg: #eef1f4;
+    --panel: #ffffff;
+    --card: #f6f7f9;
+    --line: #d6dbe1;
+    --text: #15191e;
+    --muted: #5b6570;
+    --accent: #b86e00;
+    --accent-ink: #ffffff;
+    --warn-bg: #fff1cc;
+    --warn-ink: #5a3d00;
+    color-scheme: light;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font: 15px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif;
+  display: flex;
+  flex-direction: column;
+}
+button, select, input { font: inherit; color: inherit; }
+button {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 5px 11px;
+  cursor: pointer;
+}
+button:hover { border-color: var(--muted); }
+button:focus-visible, select:focus-visible, input:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+button.primary { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); font-weight: 600; }
+button[aria-pressed="true"] { background: var(--accent); color: var(--accent-ink); border-color: var(--accent); }
+button:disabled { opacity: .45; cursor: default; }
+select, input { background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 5px 8px; }
+
+.safety {
+  background: var(--warn-bg);
+  color: var(--warn-ink);
+  padding: 6px 16px;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--line);
+}
+
+.bar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 16px;
+  background: var(--panel);
+  border-bottom: 1px solid var(--line);
+}
+.bar h1 { font-size: 18px; margin: 0; }
+.bar h1 span { color: var(--accent); font-weight: 500; }
+.controls { display: flex; flex-wrap: wrap; gap: 8px 12px; align-items: center; }
+.controls label { display: flex; gap: 6px; align-items: center; color: var(--muted); font-size: 13.5px; }
+.seg { display: inline-flex; }
+.seg button { border-radius: 0; }
+.seg button:first-child { border-radius: 6px 0 0 6px; }
+.seg button:last-child { border-radius: 0 6px 6px 0; border-left: 0; }
+
+.layout {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 390px;
+}
+
+/* The stage: the canvas fills it; overlays are later siblings with plain backgrounds. No
+   backdrop-filter, filter, opacity or blend modes on anything over the woven canvas. */
+.stage { position: relative; min-height: 360px; background: #0b0d10; overflow: hidden; }
+#view { position: absolute; inset: 0; width: 100%; height: 100%; display: block; touch-action: none; cursor: grab; }
+#view:active { cursor: grabbing; }
+.stage.calibrating #view { cursor: crosshair; }
+
+.labels { position: absolute; inset: 0; pointer-events: none; }
+.label {
+  position: absolute;
+  transform: translate(-50%, calc(-100% - 10px));
+  background: #111418;
+  color: #e7eaee;
+  border: 1px solid #39414c;
+  border-radius: 5px;
+  padding: 2px 7px;
+  font-size: 12.5px;
+  white-space: nowrap;
+}
+.label.on { background: #ffb020; color: #1a1200; border-color: #ffb020; font-weight: 600; }
+.label::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  width: 1px;
+  height: 10px;
+  background: currentColor;
+}
+
+.quiz-banner {
+  position: absolute;
+  top: 52px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #ffb020;
+  color: #1a1200;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  max-width: calc(100% - 32px);
+}
+.status {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  max-width: calc(100% - 24px);
+  background: #111418;
+  color: #c9d0d8;
+  border: 1px solid #2c333d;
+  border-radius: 6px;
+  padding: 3px 9px;
+  font-size: 12.5px;
+}
+.status b.ok { color: var(--ok); }
+.stage-tools { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px; }
+.stage-tools button { background: #111418; color: #e7eaee; border-color: #39414c; }
+.stage-tools button[aria-pressed="true"] { background: #ffb020; color: #1a1200; }
+/* Covers the canvas until the first woven frame (never fades: woven-canvas rule 5). */
+.poster {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  background: #0b0d10;
+  color: #9aa3ad;
+}
+.poster[hidden] { display: none; }
+
+.panel {
+  background: var(--panel);
+  border-left: 1px solid var(--line);
+  overflow-y: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.card { background: var(--card); border: 1px solid var(--line); border-radius: 8px; padding: 10px 12px; }
+.card h2 { font-size: 16px; margin: 0 0 4px; }
+.card h3 { font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin: 0 0 4px; }
+.card p { margin: 4px 0; }
+.check { color: var(--muted); font-style: italic; }
+.step-nav { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+.step-nav .primary { margin-left: auto; }
+
+.progress-text { display: flex; justify-content: space-between; font-size: 13px; color: var(--muted); }
+.progress-track { height: 8px; background: var(--card); border: 1px solid var(--line); border-radius: 99px; overflow: hidden; margin-top: 4px; }
+.progress-fill { height: 100%; width: 0; background: var(--accent); transition: width .25s; }
+
+.sources ul { margin: 0; padding-left: 18px; }
+.sources a { color: var(--accent); }
+.muted { color: var(--muted); }
+
+.checklist summary { cursor: pointer; font-weight: 600; }
+.checklist ol { margin: 6px 0 0; padding-left: 22px; }
+.checklist li { padding: 2px 0; cursor: pointer; color: var(--muted); }
+.checklist li.done { color: var(--text); }
+.checklist li.done::marker { color: var(--ok); }
+.checklist li.current { color: var(--text); font-weight: 600; }
+.checklist li.current::marker { color: var(--accent); }
+
+.chat { display: flex; flex-direction: column; gap: 8px; flex: 1; min-height: 220px; }
+.log { flex: 1; overflow-y: auto; display: flex; flex-direction: column; gap: 6px; max-height: 40vh; min-height: 120px; }
+.msg { padding: 6px 9px; border-radius: 8px; max-width: 92%; }
+.msg.you { align-self: flex-end; background: var(--accent); color: var(--accent-ink); }
+.msg.coach { align-self: flex-start; background: var(--panel); border: 1px solid var(--line); }
+.msg.coach.refused { border-color: var(--warn-ink); }
+.msg .cites { display: flex; flex-wrap: wrap; gap: 4px; margin-top: 4px; }
+.msg .cites button { font-size: 11.5px; padding: 0 6px; }
+.msg.system { align-self: center; color: var(--muted); font-size: 12.5px; }
+#ask { display: flex; gap: 6px; }
+#ask input { flex: 1; min-width: 0; }
+.speak { font-size: 13px; color: var(--muted); display: flex; gap: 6px; align-items: center; }
+
+dialog { background: var(--panel); color: var(--text); border: 1px solid var(--line); border-radius: 10px; max-width: 420px; }
+dialog::backdrop { background: rgba(0, 0, 0, .6); }
+dialog .row { display: flex; gap: 8px; justify-content: flex-end; margin-top: 10px; }
+
+@media (max-width: 900px) {
+  .layout { grid-template-columns: 1fr; grid-template-rows: minmax(320px, 55vh) auto; }
+  .panel { border-left: 0; border-top: 1px solid var(--line); }
+  .bar { padding: 10px 16px; }
+}
+/* Non-modal, over the side panel, so the whole model stays clickable while calibrating. */
+dialog#calibration[open] { position: fixed; inset: 150px 16px auto auto; margin: 0; z-index: 5; width: min(370px, calc(100vw - 32px)); }

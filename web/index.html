@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>3D Maintenance Coach: Aviation</title>
+<meta name="description" content="Glasses-free 3D aircraft maintenance trainer. An AI instructor walks a trainee through a 100-hour engine inspection. Training demo only.">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="safety" role="alert">
+  <strong>Training demo only.</strong> Not approved maintenance data. Follow the aircraft, engine and propeller
+  manufacturers' instructions, and work under a certificated mechanic.
+</div>
+
+<header class="bar">
+  <h1>3D Maintenance Coach <span>Aviation</span></h1>
+  <div class="controls">
+    <label>Procedure
+      <select id="procedure"></select>
+    </label>
+    <div class="seg" role="group" aria-label="Mode">
+      <button type="button" id="modeTrainee" aria-pressed="true">Trainee</button>
+      <button type="button" id="modeQuiz" aria-pressed="false">Quiz</button>
+    </div>
+    <label>Instructor
+      <select id="adapter"></select>
+    </label>
+    <button type="button" id="stereo" title="Switch the display between glasses-free 3D and 2D">3D</button>
+    <button type="button" id="calibrate" title="Click the model to place part anchors (K)">Calibrate</button>
+  </div>
+</header>
+
+<main class="layout">
+  <section class="stage" id="stage">
+    <!-- Bare, as a woven canvas must be: no CSS effects on it or its ancestors. Everything drawn over
+         it is a later sibling with a plain background (draw-order occlusion). -->
+    <canvas id="view" aria-label="3D engine view. Drag to look around, scroll to zoom, click a part."></canvas>
+    <div class="labels" id="labels" aria-hidden="true"></div>
+    <div class="quiz-banner" id="quizBanner" hidden></div>
+    <div class="status" id="status">loading…</div>
+    <div class="poster" id="poster">Loading the engine…</div>
+    <div class="stage-tools">
+      <button type="button" id="home" title="Reset the view">Home view</button>
+      <button type="button" id="labelsToggle" aria-pressed="true" title="Show part labels">Labels</button>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <div class="progress" aria-label="Procedure progress">
+      <div class="progress-text"><span id="progressText">No procedure</span><span id="scoreText"></span></div>
+      <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <section class="card step" id="stepCard">
+      <h2 id="stepTitle">Pick a procedure</h2>
+      <p id="stepText">Choose one above, or ask the instructor below. Say "help" to see what it understands.</p>
+      <p class="check" id="stepCheck" hidden></p>
+      <div class="step-nav">
+        <button type="button" id="prev">Back</button>
+        <button type="button" id="explain">Explain</button>
+        <button type="button" id="quizMe">Quiz me</button>
+        <button type="button" id="next" class="primary">Next step</button>
+      </div>
+    </section>
+
+    <section class="card sources">
+      <h3>Source</h3>
+      <ul id="sources"><li class="muted">Citations for the current step appear here.</li></ul>
+    </section>
+
+    <details class="card checklist" open>
+      <summary>Checklist</summary>
+      <ol id="checklist"></ol>
+    </details>
+
+    <section class="card chat">
+      <div class="log" id="log" aria-live="polite"></div>
+      <form id="ask" autocomplete="off">
+        <button type="button" id="mic" title="Talk to the instructor" aria-pressed="false">Mic</button>
+        <input id="question" placeholder='Ask the instructor, e.g. "where are the magnetos?"' aria-label="Ask the instructor">
+        <button type="submit" class="primary">Ask</button>
+      </form>
+      <label class="speak"><input type="checkbox" id="speak"> Read replies aloud</label>
+    </section>
+  </aside>
+</main>
+
+<dialog id="calibration">
+  <form method="dialog">
+    <h2>Calibrate anchors</h2>
+    <p>Pick a part, then click the model where its label should sit. Anchors are saved for asset
+       <code id="calAsset"></code> in this browser; export them to commit.</p>
+    <label>Part <select id="calPart"></select></label>
+    <p id="calLast" class="muted">Nothing placed yet.</p>
+    <div class="row">
+      <button type="button" id="calExport">Export JSON</button>
+      <button type="button" id="calReset">Reset to defaults</button>
+      <button value="close" class="primary">Done</button>
+    </div>
+  </form>
+</dialog>
+
+<!-- Everything is served from this repo (web/vendor/, filled by `npm install`), so the page runs
+     offline: no CDN on a training station or in a hangar. three/addons/ is required by GLTFLoader
+     and by Spark (it imports three/addons/postprocessing/Pass.js). -->
+<script type="importmap">
+{ "imports": {
+  "three": "./vendor/three/build/three.module.js",
+  "three/addons/": "./vendor/three/examples/jsm/",
+  "@sparkjsdev/spark": "./vendor/spark/dist/spark.module.js",
+  "@displayxr/inline3d": "./vendor/inline3d/js/inline3d.js",
+  "@displayxr/inline3d/three": "./vendor/inline3d/js/inline3d-three.js"
+} }
+</script>
+<script type="module" src="app/main.js"></script>
+</body>
+</html>
