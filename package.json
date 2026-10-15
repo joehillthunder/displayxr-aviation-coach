@@ -1,6 +1,6 @@
 {
   "name": "displayxr-aviation-coach",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "private": true,
   "description": "Glasses-free 3D aircraft maintenance trainer: an AI instructor walks a trainee through a 100-hour engine inspection on a DisplayXR display, or in 2D in any browser.",
   "license": "Apache-2.0",
