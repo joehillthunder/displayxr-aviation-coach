@@ -19,7 +19,7 @@ export class LocalAdapter {
       const res = await fetch(this.endpoint, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: this.messages }),
+        body: JSON.stringify({ training: this.coach.k.training?.id, messages: this.messages }),
       });
       const data = await res.json().catch(() => ({}));
       if (!res.ok) {

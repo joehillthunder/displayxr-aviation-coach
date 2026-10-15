@@ -1,0 +1,96 @@
+{
+  "version": 1,
+  "note": "One entry per training. Each has its own 3D model (web/app/models/<model>.js) and its own training material (web/data/<id>/parts.json and procedures.json); citations come from the shared sources.json. stage: metres, in the model's own frame. home = the opening orbit, floorY/floorRadius = the ground disc, focusDist = default fly-to distance (a part's own focusDist wins), maxDist = how far the trainee may zoom out, depthRef = see ipdFactorFor in web/app/view.js.",
+  "default": "engine",
+  "trainings": [
+    {
+      "id": "engine",
+      "title": "Engine 100-hour inspection",
+      "short": "Engine",
+      "model": "engine",
+      "asset": "trainer-engine",
+      "subject": "a horizontally opposed piston engine on a training stand",
+      "blurb": "An opposed four-cylinder engine: the engine-and-nacelle items of a 100-hour inspection, spark plugs, oil and filter, and the propeller.",
+      "scans": true,
+      "stage": {
+        "home": {
+          "target": [0, -0.02, -0.02],
+          "yaw": 0.65,
+          "pitch": 0.32,
+          "dist": 2.25
+        },
+        "floorY": -1.05,
+        "floorRadius": 2.4,
+        "focusDist": 0.9,
+        "maxDist": 4.2,
+        "depthRef": 1.2
+      }
+    },
+    {
+      "id": "preflight",
+      "title": "Preflight walk-around",
+      "short": "Preflight",
+      "model": "aircraft",
+      "asset": "trainer-aircraft",
+      "subject": "a whole single-engine, high-wing training airplane parked on the ramp",
+      "blurb": "A high-wing trainer on the ramp: the pilot's visual walk-around from the cockpit door to the tail and back, plus the fuel check.",
+      "stage": {
+        "home": {
+          "target": [0, 1.2, -0.6],
+          "yaw": -0.75,
+          "pitch": 0.38,
+          "dist": 13
+        },
+        "floorY": 0,
+        "floorRadius": 11,
+        "focusDist": 2.2,
+        "maxDist": 22,
+        "depthRef": 1.4
+      }
+    },
+    {
+      "id": "landing_gear",
+      "title": "Landing gear, wheels and brakes",
+      "short": "Landing gear",
+      "model": "gear",
+      "asset": "gear-bench",
+      "subject": "a spring-steel main landing gear leg with its wheel, tire and disc brake, beside an oleo nose gear, on a training bench",
+      "blurb": "A spring-steel main gear and an oleo nose gear side by side: the landing gear group of a 100-hour inspection, and a wheel, tire and brake check.",
+      "stage": {
+        "home": {
+          "target": [0, 0.42, 0],
+          "yaw": 0.55,
+          "pitch": 0.3,
+          "dist": 2.6
+        },
+        "floorY": 0,
+        "floorRadius": 2.2,
+        "focusDist": 0.85,
+        "maxDist": 4.5,
+        "depthRef": 1.2
+      }
+    },
+    {
+      "id": "flight_controls",
+      "title": "Empennage and flight-control cables",
+      "short": "Flight controls",
+      "model": "empennage",
+      "asset": "trainer-empennage",
+      "subject": "the tail section of a light airplane with its skin shown see-through, so the elevator and rudder cables, pulleys and turnbuckles are visible",
+      "blurb": "The tail of a light airplane with see-through skin: stabilizers, elevator, rudder and trim tab, and the cables, pulleys and turnbuckles that move them.",
+      "stage": {
+        "home": {
+          "target": [0, 1.35, -1.1],
+          "yaw": 0.85,
+          "pitch": 0.42,
+          "dist": 6.2
+        },
+        "floorY": 0,
+        "floorRadius": 4.5,
+        "focusDist": 1.1,
+        "maxDist": 10,
+        "depthRef": 1.3
+      }
+    }
+  ]
+}

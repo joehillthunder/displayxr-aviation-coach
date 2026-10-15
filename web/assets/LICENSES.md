@@ -8,7 +8,10 @@ you cannot confirm.
 
 | Asset | Where it is used | Source | License | Verified |
 |---|---|---|---|---|
-| Trainer engine (procedural opposed-four) | Default fallback model, `web/app/trainer-engine.js` | Written for this repo from three.js primitives | Apache-2.0 (this repo) | n/a |
+| Trainer engine (procedural opposed-four) | Engine training, fallback when no scan, `web/app/models/engine.js` | Written for this repo from three.js primitives | Apache-2.0 (this repo) | n/a |
+| Trainer aircraft (procedural high-wing single) | Preflight training, `web/app/models/aircraft.js` | Written for this repo from three.js primitives; generic and unbranded | Apache-2.0 (this repo) | n/a |
+| Gear bench (procedural spring-steel main + oleo nose gear) | Landing gear training, `web/app/models/gear.js` | Written for this repo from three.js primitives | Apache-2.0 (this repo) | n/a |
+| Trainer empennage (procedural tail section) | Flight controls training, `web/app/models/empennage.js` | Written for this repo from three.js primitives | Apache-2.0 (this repo) | n/a |
 | Your engine-bay scan | `web/assets/scans/` (placeholder: no scan committed yet) | Your own phone capture | Yours; state it here when you add it | |
 
 ### Smithsonian 3D candidates (CC0)

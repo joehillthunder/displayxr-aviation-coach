@@ -4,9 +4,11 @@
 // with none set the page runs the mock instructor.
 //
 //   GET  /api/config           which adapters are usable
-//   POST /api/claude           one Claude Messages API turn   { messages } -> { content, stop_reason }
-//   GET  /api/openai/session   a short-lived OpenAI Realtime client secret, session preconfigured
+//   POST /api/claude           one Claude Messages API turn   { training, messages } -> { content, stop_reason }
+//   GET  /api/openai/session   a short-lived OpenAI Realtime client secret, session preconfigured (?training=)
 //   POST /api/local            one OpenAI-compatible chat turn on a local model (offline mode)
+//
+// Every call names a training (web/data/trainings.json); the default one when it does not.
 //   POST /api/muse             Muse: not configured yet (501 with what is needed)
 
 import { createServer } from 'node:http';
@@ -25,20 +27,34 @@ const env = (k, d = '') => (process.env[k] || d).trim();
 const PORT = Number(env('PORT', '8080'));
 const WEB = join(root, 'web');
 
-// The prompt and tools are built HERE from the committed data, never accepted from the page.
-const k = await Knowledge.load(async (f) => JSON.parse(await readFile(join(WEB, 'data', f), 'utf8')), '');
-const SYSTEM = systemPrompt(k);
-const TOOLS = toolDefs(k);
+// The prompt and tools are built HERE from the committed data, never accepted from the page: the
+// page only picks which training, and an unknown id is refused.
+const readData = async (f) => JSON.parse(await readFile(join(WEB, 'data', f), 'utf8'));
+const CATALOG = await Knowledge.catalog(readData, '');
+const LESSONS = new Map();
+for (const t of CATALOG.trainings) {
+  const k = await Knowledge.load(readData, '', t.id);
+  const tools = toolDefs(k);
+  LESSONS.set(t.id, {
+    system: systemPrompt(k),
+    tools,
+    claudeTools: tools.map((x) => ({
+      name: x.name,
+      description: x.description,
+      input_schema: { ...x.parameters, required: x.parameters.required || [] },
+      strict: true,
+    })),
+  });
+}
+function lesson(id) {
+  const l = LESSONS.get(id || CATALOG.default);
+  if (!l) throw httpError(400, `unknown training ${id}`);
+  return l;
+}
 
 const claude = env('ANTHROPIC_API_KEY') ? new Anthropic() : null;
 const CLAUDE_MODEL = env('CLAUDE_MODEL', 'claude-opus-5-5');
 const CLAUDE_EFFORT = env('CLAUDE_EFFORT', 'low');
-const CLAUDE_TOOLS = TOOLS.map((t) => ({
-  name: t.name,
-  description: t.description,
-  input_schema: { ...t.parameters, required: t.parameters.required || [] },
-  strict: true,
-}));
 
 const MIME = {
   '.html': 'text/html; charset=utf-8', '.js': 'text/javascript; charset=utf-8', '.mjs': 'text/javascript; charset=utf-8',
@@ -60,11 +76,12 @@ const routes = {
   'POST /api/claude': async (body) => {
     if (!claude) throw httpError(503, 'Claude is not configured: set ANTHROPIC_API_KEY in .env');
     const messages = validMessages(body?.messages);
+    const { system, claudeTools } = lesson(body?.training);
     const response = await claude.beta.messages.create({
       model: CLAUDE_MODEL,
       max_tokens: 4096,
-      system: [{ type: 'text', text: SYSTEM, cache_control: { type: 'ephemeral' } }],
-      tools: CLAUDE_TOOLS,
+      system: [{ type: 'text', text: system, cache_control: { type: 'ephemeral' } }],
+      tools: claudeTools,
       messages,
       output_config: { effort: CLAUDE_EFFORT },
       // A declined request is re-run server-side on the recommended fallback model.
@@ -74,7 +91,8 @@ const routes = {
     return { content: response.content, stop_reason: response.stop_reason, model: response.model };
   },
 
-  'GET /api/openai/session': async () => {
+  'GET /api/openai/session': async (_body, url) => {
+    const { system, tools } = lesson(url.searchParams.get('training'));
     const key = env('OPENAI_API_KEY');
     if (!key) throw httpError(503, 'OpenAI Realtime is not configured: set OPENAI_API_KEY in .env');
     const res = await fetch('https://api.openai.com/v1/realtime/client_secrets', {
@@ -84,8 +102,8 @@ const routes = {
         session: {
           type: 'realtime',
           model: env('OPENAI_REALTIME_MODEL', 'gpt-realtime-2.1'),
-          instructions: SYSTEM,
-          tools: TOOLS.map((t) => ({ type: 'function', name: t.name, description: t.description, parameters: t.parameters })),
+          instructions: system,
+          tools: tools.map((t) => ({ type: 'function', name: t.name, description: t.description, parameters: t.parameters })),
           tool_choice: 'auto',
           audio: { output: { voice: env('OPENAI_REALTIME_VOICE', 'marin') } },
         },
@@ -97,6 +115,7 @@ const routes = {
   },
 
   'POST /api/local': async (body) => {
+    const { system, tools } = lesson(body?.training);
     const url = env('LOCAL_LLM_URL', 'http://localhost:11434/v1/chat/completions');
     const messages = Array.isArray(body?.messages) ? body.messages.slice(-60) : [];
     const res = await fetch(url, {
@@ -104,8 +123,8 @@ const routes = {
       headers: { 'Content-Type': 'application/json', Authorization: 'Bearer local' },
       body: JSON.stringify({
         model: env('LOCAL_LLM_MODEL', 'qwen3:8b'),
-        messages: [{ role: 'system', content: SYSTEM }, ...messages],
-        tools: TOOLS.map((t) => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } })),
+        messages: [{ role: 'system', content: system }, ...messages],
+        tools: tools.map((t) => ({ type: 'function', function: { name: t.name, description: t.description, parameters: t.parameters } })),
       }),
     }).catch((err) => {
       throw httpError(503, `local model not reachable at ${url} (${err.message}). Start Ollama, or set LOCAL_LLM_URL.`);
@@ -174,9 +193,11 @@ function send(res, status, body) {
 }
 
 const server = createServer(async (req, res) => {
+  let url;
   let pathname;
   try {
-    pathname = new URL(req.url.replace(/^\/+/, '/'), 'http://localhost').pathname;
+    url = new URL(req.url.replace(/^\/+/, '/'), 'http://localhost');
+    pathname = url.pathname;
   } catch {
     return send(res, 400, 'bad request');
   }
@@ -186,7 +207,7 @@ const server = createServer(async (req, res) => {
     return serveStatic(req, res, pathname);
   }
   try {
-    send(res, 200, await route(req.method === 'POST' ? await readBody(req) : null));
+    send(res, 200, await route(req.method === 'POST' ? await readBody(req) : null, url));
   } catch (err) {
     const status = err.status || (err instanceof Anthropic.APIError ? 502 : 500);
     if (status >= 500) console.error(`[server] ${pathname}:`, err.message);
@@ -195,7 +216,7 @@ const server = createServer(async (req, res) => {
 });
 
 server.listen(PORT, '127.0.0.1', () => {
-  console.log(`3D Maintenance Coach on http://localhost:${PORT}/`);
+  console.log(`3D Aviation Coach on http://localhost:${PORT}/`);
   console.log(`  instructors: mock${claude ? ', claude' : ''}${env('OPENAI_API_KEY') ? ', openai' : ''} (+ local model if Ollama is running)`);
   console.log('  Training demo only, not approved maintenance data.');
 });

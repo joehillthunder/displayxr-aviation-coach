@@ -1,0 +1,153 @@
+{
+  "version": 1,
+  "units": "metres",
+  "frame": "Tail frame: +z forward (toward the cabin), +y up, +x toward the airplane's left. Origin on the floor under the forward cut. The tailcone skin is see-through.",
+  "note": "anchor = where the label and fly-to point sit on the built-in trainer empennage (web/app/models/empennage.js). Paired items (rudder horns, rudder cables, pulleys, turnbuckles) are anchored on the left run.",
+  "parts": [
+    {
+      "id": "horizontal_stabilizer",
+      "name": "Horizontal stabilizer",
+      "aliases": ["stabilizer", "stab", "horizontal tail", "tailplane", "horizontal stab"],
+      "anchor": [1.1, 1.44, -2.3],
+      "viewDir": [0.3, 0.7, 0.5],
+      "focusDist": 1.6,
+      "description": "The fixed horizontal surface the elevator hangs on. Its skin, spar line, leading edge and attach points are checked for deterioration, distortion, evidence of failure and insecure attachment.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(g)", "topic": "empennage" },
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" }
+      ]
+    },
+    {
+      "id": "elevator",
+      "name": "Elevator",
+      "aliases": ["elevators", "pitch control"],
+      "anchor": [0.9, 1.43, -2.97],
+      "viewDir": [0.3, 0.65, -0.7],
+      "focusDist": 1.4,
+      "description": "The movable pitch control surface behind the stabilizer, driven by the elevator cables through a horn. Checked for damage, secure attachment, correct installation and free, full operation.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(g)", "topic": "empennage" },
+        { "doc": "amta", "ch": "2", "page": "2-36", "section": "Static Balance" }
+      ]
+    },
+    {
+      "id": "trim_tab",
+      "name": "Elevator trim tab",
+      "aliases": ["trim", "tab", "trim tab", "elevator trim"],
+      "anchor": [-0.75, 1.415, -3.24],
+      "viewDir": [-0.2, 0.7, -0.7],
+      "focusDist": 0.9,
+      "description": "A small adjustable surface on the elevator's trailing edge that relieves control pressure. It is rigged much like the main surfaces and moved by the trim actuator's push rod.",
+      "sources": [
+        { "doc": "amta", "ch": "2", "page": "2-52", "section": "Rigging Checks (trim tab systems)" },
+        { "doc": "cfr43d", "loc": "(g)", "topic": "empennage" }
+      ]
+    },
+    {
+      "id": "vertical_fin",
+      "name": "Vertical fin",
+      "aliases": ["fin", "vertical stabilizer", "vertical tail", "vertical stab"],
+      "anchor": [0.035, 2, -2.4],
+      "viewDir": [1, 0.2, 0.2],
+      "focusDist": 1.4,
+      "description": "The fixed vertical surface the rudder hangs on. Same checks as the horizontal stabilizer: skin, spar line, leading edge and attach points.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(g)", "topic": "empennage" },
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" }
+      ]
+    },
+    {
+      "id": "rudder",
+      "name": "Rudder",
+      "aliases": ["yaw control"],
+      "anchor": [0.03, 2, -3.05],
+      "viewDir": [0.9, 0.2, -0.4],
+      "focusDist": 1.4,
+      "description": "The movable yaw control surface on the fin, driven by the left and right rudder cables through its horns. Checked for damage, secure attachment and free, full operation.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(g)", "topic": "empennage" },
+        { "doc": "amta", "ch": "2", "page": "2-36", "section": "Static Balance" }
+      ]
+    },
+    {
+      "id": "hinges",
+      "name": "Hinges",
+      "aliases": ["hinge", "hinge brackets", "hinge bolts", "hinge points"],
+      "anchor": [0.5, 1.435, -2.77],
+      "viewDir": [0.3, 0.6, -0.75],
+      "focusDist": 0.9,
+      "description": "The brackets and bolts the elevator and rudder pivot on. A loose or worn hinge is an insecure attachment and lets the surface move where it should not.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(g)", "topic": "insecure attachment, improper installation" },
+        { "doc": "amta", "ch": "2", "page": "2-55", "section": "Cotter Pins and Self-Locking Nuts" }
+      ]
+    },
+    {
+      "id": "control_horns",
+      "name": "Control horns",
+      "aliases": ["horn", "horns", "elevator horn", "rudder horn", "rudder horns", "bellcrank"],
+      "anchor": [0.16, 1.535, -2.95],
+      "viewDir": [1, 0.4, -0.3],
+      "focusDist": 0.9,
+      "description": "Arms on the elevator and rudder where the cables attach. Pulling a cable on a horn moves the surface. Checked for cracks, security and properly safetied cable ends.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(c)(5)", "topic": "flight controls: installation and operation" },
+        { "doc": "amta", "ch": "2", "page": "2-52", "section": "Checking and Safetying the System" }
+      ]
+    },
+    {
+      "id": "control_cables",
+      "name": "Control cables",
+      "aliases": ["cable", "cables", "elevator cables", "rudder cables", "control cable", "flight control cables", "wire rope"],
+      "anchor": [0.176, 1.217, -1.8],
+      "viewDir": [1, 0.5, 0.3],
+      "focusDist": 0.9,
+      "description": "Steel cables run from the cockpit controls to the horns: two for the elevator, two for the rudder. Broken wires are easy to see, but wear, corrosion and distortion are not, so the critical fatigue areas get a close look.",
+      "sources": [
+        { "doc": "amta", "ch": "2", "page": "2-41", "section": "Cable Inspection" },
+        { "doc": "cfr43d", "loc": "(c)(5)", "topic": "flight controls" }
+      ]
+    },
+    {
+      "id": "pulleys",
+      "name": "Pulleys",
+      "aliases": ["pulley", "pulley brackets", "fairlead", "fairleads", "cable guides", "guides"],
+      "anchor": [0.18, 0.96, -1],
+      "viewDir": [1, 0.4, 0.3],
+      "focusDist": 0.8,
+      "description": "Pulleys guide the cables and change their direction; brackets on the structure hold them. Their sealed bearings need no further lubrication, but each pulley must turn smoothly and show no abnormal cable wear pattern.",
+      "sources": [
+        { "doc": "amta", "ch": "2", "page": "2-41", "section": "Cable Guides" },
+        { "doc": "amta", "ch": "2", "page": "2-42", "section": "Cable Guides" },
+        { "doc": "amta", "ch": "2", "page": "2-43", "section": "Pulley wear patterns" }
+      ]
+    },
+    {
+      "id": "turnbuckles",
+      "name": "Turnbuckles",
+      "aliases": ["turnbuckle", "barrel", "safety wire", "safetying", "cable tension", "tension"],
+      "anchor": [0.259, 0.815, 0.5],
+      "viewDir": [1, 0.5, 0.3],
+      "focusDist": 0.8,
+      "description": "A threaded barrel with two terminals, fitted in each cable to make small adjustments in length and tension. Once adjusted, a turnbuckle must be safetied.",
+      "sources": [
+        { "doc": "amta", "ch": "2", "page": "2-44", "section": "Turnbuckles" },
+        { "doc": "amta", "ch": "2", "page": "2-50", "section": "Cable Tension" }
+      ]
+    },
+    {
+      "id": "trim_actuator",
+      "name": "Trim actuator",
+      "aliases": ["trim actuator", "jackscrew", "jack screw", "trim push rod", "push rod", "pushrod", "trim system"],
+      "anchor": [-0.105, 1.22, -1.8],
+      "viewDir": [-1, 0.3, 0.4],
+      "focusDist": 0.8,
+      "description": "A jackscrew actuator in the tailcone that moves the trim tab through a push rod. Checked for security, wear and free, correct operation.",
+      "sources": [
+        { "doc": "amta", "ch": "2", "page": "2-44", "section": "Push Rods" },
+        { "doc": "amta", "ch": "2", "page": "2-52", "section": "Rigging Checks (trim tab systems)" },
+        { "doc": "cfr43d", "loc": "(g)", "topic": "improper component operation" }
+      ]
+    }
+  ]
+}

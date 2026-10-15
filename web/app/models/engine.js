@@ -1,6 +1,6 @@
 // The built-in "trainer engine": a generic, unbranded horizontally opposed four-cylinder engine made
 // from primitives, at real-world scale (metres). It is the fallback asset when no scan is present,
-// and it is what parts.json's default anchors are measured on. Every part is its own group tagged
+// and it is what engine/parts.json's default anchors are measured on. Every part is its own group tagged
 // with userData.partId, so highlighting and picking are exact.
 //
 // Frame (matches parts.json): +x engine right (seen from the front), +y up, +z forward (propeller).

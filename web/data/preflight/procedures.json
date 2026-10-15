@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "note": "Training walkthroughs paraphrased from FAA-H-8083-3C (Airplane Flying Handbook) Chapter 2. Not a substitute for the airplane's own AFM/POH checklist, which sets the sequence and every limit.",
+  "procedures": [
+    {
+      "id": "preflight_walkaround",
+      "title": "Preflight walk-around",
+      "aliases": ["walk-around", "walkaround", "walk around", "preflight", "pre-flight", "preflight inspection", "preflight assessment", "visual preflight"],
+      "summary": "The pilot's visual preflight assessment of a fixed-gear, high-wing trainer, from the cabin around the airplane and back to the nose, in the order of a typical checklist.",
+      "steps": [
+        {
+          "id": "w1",
+          "title": "Start in the cabin",
+          "parts": ["windshield"],
+          "text": "Work from the airplane's own checklist. In the cabin: control locks removed, switches off, trim set for takeoff, and note the fuel gauges so you can compare them with what you see in the tanks. Check the windshield and windows for deterioration and breakage.",
+          "check": "Why note the fuel gauges before you walk around?",
+          "answer": "So you can compare them with the fuel level you see in each tank.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-5", "section": "Visual Preflight Assessment" },
+            { "doc": "cfr43d", "loc": "(c)(3)" }
+          ]
+        },
+        {
+          "id": "w2",
+          "title": "Spar lines and attach points",
+          "parts": ["wing_struts", "wings"],
+          "text": "Walk the airplane in the checklist's direction, usually counterclockwise from the cabin door. Pay closest attention to spar lines and to wing, strut, tail and landing gear attach points: look for distortion, ripples, dents or creases, and for cracked paint or black film around rivet heads.",
+          "check": "What does a black film around a rivet head suggest?",
+          "answer": "The rivet has worked loose in its hole.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" }
+          ]
+        },
+        {
+          "id": "w3",
+          "title": "Leading edges and wingtips",
+          "parts": ["wings"],
+          "text": "Scrutinize the leading edges for impact damage from rocks, ice, birds or hangar rash. Fiberglass or plastic wingtips and fairings crack from screw holes; a crack that has grown past its stop-drill hole, or a new crack beside it, needs a mechanic.",
+          "check": "Where do cracks usually start on fiberglass wingtips and fairings?",
+          "answer": "At screw holes or tight radii.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-7", "section": "Outer Wing Surfaces and Tail Section" }
+          ]
+        },
+        {
+          "id": "w4",
+          "title": "Fuel quantity and caps",
+          "parts": ["fuel_caps"],
+          "text": "Open each tank and confirm by eye that the fuel level matches the gauges and covers the flight plus reserves. Make sure each cap goes back on securely, and treat any fuel stain on the wing as a probable leak, however old it looks.",
+          "check": "An old, dry fuel stain runs down the wing. Can you ignore it?",
+          "answer": "No. Any fuel stain warrants investigation; it is a sign of probable leakage.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-9", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "w5",
+          "title": "Sump the fuel",
+          "parts": ["fuel_sumps"],
+          "text": "Drain a sample from each tank sump and from the fuel strainer quick drain, in the order the checklist gives. Check the grade by colour, and look for water, dirt and an odd smell. Water sits in beads at the bottom of the sample; keep sampling until none appears.",
+          "check": "The first sample has water in it. What do you do?",
+          "answer": "Keep sampling until no water or contamination appears; significant or repeated water goes to qualified maintenance personnel.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" },
+            { "doc": "afh", "ch": "2", "page": "2-9", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "w6",
+          "title": "Fuel vent",
+          "parts": ["fuel_vent"],
+          "text": "Look at the fuel tank vent with a flashlight: it must be undamaged and clear of obstructions. A rush of air when you crack a fuel cap can point to a vent problem.",
+          "check": "What happens in flight if the vent is blocked?",
+          "answer": "Air cannot replace the fuel being drawn out, leading to fuel starvation and engine failure.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "w7",
+          "title": "Flaps and ailerons",
+          "parts": ["ailerons", "flaps"],
+          "text": "Look over the flaps and ailerons along with the wing for deterioration, distortion and loose or missing rivets or screws. All the flight controls are moved again through their entire operating range in the before-takeoff check.",
+          "check": "How far are the flight controls moved in the before-takeoff check?",
+          "answer": "Throughout their entire operating range.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+            { "doc": "afh", "ch": "2", "page": "2-21", "section": "Before-Takeoff Check" }
+          ]
+        },
+        {
+          "id": "w8",
+          "title": "Tail section",
+          "parts": ["elevator", "rudder"],
+          "text": "At the tail, check the horizontal and vertical stabilizers' spar lines and attach points, their leading edges, and the elevator, trim tab and rudder for damage and security.",
+          "check": "Besides the wing, whose leading edges get extra scrutiny?",
+          "answer": "The horizontal and vertical stabilizers'.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+            { "doc": "afh", "ch": "2", "page": "2-7", "section": "Outer Wing Surfaces and Tail Section" }
+          ]
+        },
+        {
+          "id": "w9",
+          "title": "Main gear, tires and brakes",
+          "parts": ["main_landing_gear"],
+          "text": "Look at the gear and the ground under it for leaking fluid. Check tire inflation, tread and wear pattern, and for cuts, bulges or visible cords; wheel hubs for cracks and a straight, capped valve stem; brake pads for remaining material and brake lines dry and secure.",
+          "check": "Why move the airplane slightly during the tire check?",
+          "answer": "To see the whole circumference of the tire.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+          ]
+        },
+        {
+          "id": "w10",
+          "title": "Cowling and oil",
+          "parts": ["cowling", "oil_dipstick"],
+          "text": "Check the cowling's fasteners, rivets and latches from above, the sides and below. Check the oil level on the dipstick and note its colour; look inside the cowling for oil and fuel leaks, loose objects and exhaust stains.",
+          "check": "Does the dipstick read higher with the engine cold or just after a flight?",
+          "answer": "Cold: a cold engine shows a higher level than a warm one recently shut down.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Engine and Propeller" },
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" },
+            { "doc": "afh", "ch": "2", "page": "2-12", "section": "Engine and Propeller" }
+          ]
+        },
+        {
+          "id": "w11",
+          "title": "Propeller, spinner and air filter",
+          "parts": ["propeller", "air_intake"],
+          "text": "Check the spinner for dents, cracks, corrosion and alignment, and the blades for erosion, nicks, cracks, pitting, corrosion and security. The air filter must be free of dirt and blockages such as bugs or nests.",
+          "check": "Name three things to look for on the propeller blades.",
+          "answer": "Any three of: erosion, nicks, cracks, pitting, corrosion, security.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-12", "section": "Engine and Propeller" }
+          ]
+        },
+        {
+          "id": "w12",
+          "title": "Nose gear",
+          "parts": ["nose_gear"],
+          "text": "Check the nose strut is properly inflated, clean and free of fluid. The shimmy damper must be secure and not leaking; links, collars, steering rods and the fork must be crack-free with secure fasteners and minimal free play between the torque links.",
+          "check": "What does the shimmy damper do?",
+          "answer": "It damps oscillations of the nose gear.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+          ]
+        },
+        {
+          "id": "w13",
+          "title": "Tie-downs and chocks",
+          "parts": ["tie_downs", "chocks"],
+          "text": "Untie the wing and tail tie-downs. If the chocks stay in for engine start, they come out only with the throttle at idle, approached from behind the propeller and never from the front or side.",
+          "check": "From which direction do you approach the chocks with the engine running?",
+          "answer": "Only from the rear of the propeller.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-17", "section": "Engine Starting" },
+            { "doc": "afh", "ch": "2", "page": "2-23", "section": "Post-Flight" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "fuel_check",
+      "title": "Fuel quantity and contamination check",
+      "aliases": ["fuel check", "fuel contamination", "sumping", "sump the fuel", "fuel sampling", "fuel quantity check"],
+      "summary": "The fuel part of the preflight on its own: quantity by eye, samples from every drain, the vent, and the caps.",
+      "steps": [
+        {
+          "id": "f1",
+          "title": "Confirm the quantity by eye",
+          "parts": ["fuel_caps"],
+          "text": "Compare the gauges with the level you see in each tank. Ramp slope and strut extension change the airplane's attitude, and so how much fuel the tanks hold when filled.",
+          "check": "Why can a sloping ramp matter when the tanks are filled?",
+          "answer": "The airplane's attitude changes, which can significantly alter the fuel capacity.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-9", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "f2",
+          "title": "Sample every drain",
+          "parts": ["fuel_sumps"],
+          "text": "Drain enough fuel from each tank sump and from the strainer quick drain to check grade by colour, water, dirt and odour, in the order the checklist gives. Drain the sumps during the preflight and again after refueling.",
+          "check": "When should each tank sump be drained?",
+          "answer": "During the preflight and after refueling.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "f3",
+          "title": "Know what contamination looks like",
+          "parts": ["fuel_sumps"],
+          "text": "Water is heavier than fuel and collects at the low points, so it shows as beads at the bottom of the jar. It condenses in partly filled tanks or gets in past worn cap seals; small dark specks can be deteriorating rubber from seals or sealant.",
+          "check": "Why does keeping the tanks full help?",
+          "answer": "Less empty space in the tank means less room for water to condense.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-9", "section": "Fuel and Oil" },
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "f4",
+          "title": "Check the vent",
+          "parts": ["fuel_vent"],
+          "text": "With a flashlight, confirm the vent is undamaged and unobstructed, so outside air can replace the fuel the engine draws.",
+          "check": "What tool does the handbook suggest for looking at the vent?",
+          "answer": "A flashlight.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+          ]
+        },
+        {
+          "id": "f5",
+          "title": "Caps back on",
+          "parts": ["fuel_caps"],
+          "text": "Watch any fueling yourself rather than leaving it to line service, and confirm every fuel and oil cap is securely replaced.",
+          "check": "Who is responsible for the right fuel going in and the caps going back on?",
+          "answer": "The pilot responsible for the flight.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+          ]
+        }
+      ]
+    }
+  ]
+}

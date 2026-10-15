@@ -1,0 +1,231 @@
+{
+  "version": 1,
+  "note": "Training walkthroughs paraphrased from 14 CFR 43 Appendix D (e) and FAA-H-8083-31B Chapter 13. Not approved maintenance data: the aircraft manufacturer's instructions govern every pressure, torque and wear limit.",
+  "procedures": [
+    {
+      "id": "landing_gear_100h",
+      "title": "100-hour landing gear inspection",
+      "aliases": [
+        "landing gear inspection",
+        "landing gear group",
+        "gear inspection",
+        "100 hour gear",
+        "100-hour gear",
+        "hundred hour gear",
+        "annual gear",
+        "landing gear 100 hour"
+      ],
+      "summary": "The landing gear group of a 100-hour inspection on a fixed tricycle gear, item by item as Part 43 Appendix D (e) lays it out.",
+      "steps": [
+        {
+          "id": "g1",
+          "title": "Open up, clean, check attachment",
+          "parts": ["gear_attach", "main_gear_leg"],
+          "text": "Remove the fairings and wheel covers so every unit can be seen, and clean the gear. Then check every unit for poor condition and insecurity of attachment, starting where the gear joins the structure: bolts secure, no wrinkled skin, loose rivets or corrosion around the fittings.",
+          "check": "What two conditions does Appendix D name for all landing gear units?",
+          "answer": "Poor condition and insecurity of attachment.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(a)" },
+            { "doc": "cfr43d", "loc": "(e)(1)" },
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+          ]
+        },
+        {
+          "id": "g2",
+          "title": "Spring-steel leg",
+          "parts": ["main_gear_leg"],
+          "text": "The main legs are flexible spring steel: they take the landing impact and give it back to the airframe gradually. Look along each leg for distortion, cracks and corrosion, and compare the two sides for height and alignment.",
+          "check": "What does Appendix D tell you to look for on gear members?",
+          "answer": "Undue or excessive wear, fatigue and distortion.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-6", "section": "Leaf-Type Spring Gear" },
+            { "doc": "cfr43d", "loc": "(e)(3)" }
+          ]
+        },
+        {
+          "id": "g3",
+          "title": "Nose strut fluid and inflation",
+          "parts": ["nose_strut"],
+          "text": "Check the oleo strut for the correct fluid level, leaks at the packing gland, and a clean, undamaged chrome piston. Servicing means releasing the air, filling with the approved fluid to the service valve port, then inflating slowly to what the manufacturer specifies.",
+          "check": "Name the two ways manufacturers specify strut inflation.",
+          "answer": "A pressure in psi, or an extension measurement of the lower strut.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(2)" },
+            { "doc": "amta", "ch": "13", "page": "13-12", "section": "Servicing Shock Struts" },
+            { "doc": "amta", "ch": "13", "page": "13-13", "section": "Servicing Shock Struts" }
+          ]
+        },
+        {
+          "id": "g4",
+          "title": "Torque links and shimmy damper",
+          "parts": ["torque_links", "shimmy_damper"],
+          "text": "The torque links keep the piston and wheel aligned with the strut. Check them for cracks, secure fasteners and minimal free play. Check the shimmy damper is securely attached and, if it is hydraulic, not leaking.",
+          "check": "What would happen to the nose wheel without torque links?",
+          "answer": "The piston could rotate in the cylinder, so the wheel would not stay aligned.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-9", "section": "Shock Struts (torque links)" },
+            { "doc": "cfr43d", "loc": "(e)(3)" },
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+          ]
+        },
+        {
+          "id": "g5",
+          "title": "Hydraulic lines",
+          "parts": ["brake_line"],
+          "text": "Follow each brake line from the fuselage down the leg to the caliper. It must be secure and dry, with no leaks, chafing, abrasion or deep cracking.",
+          "check": "What does Appendix D tell you to look for on hydraulic lines?",
+          "answer": "Leakage.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(5)" },
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+          ]
+        },
+        {
+          "id": "g6",
+          "title": "Wheels",
+          "parts": ["main_wheel"],
+          "text": "Examine each wheel for cracks, flaked paint and any sign of overheating. The tie bolts holding the wheel halves together are under great stress; inspect them as the maintenance manual describes.",
+          "check": "Name three things to look for on a wheel installed on the aircraft.",
+          "answer": "Cracks, flaked paint and evidence of overheating.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(7)" },
+            { "doc": "amta", "ch": "13", "page": "13-36", "section": "Wheel Inspection" },
+            { "doc": "amta", "ch": "13", "page": "13-41", "section": "Wheel Tie Bolt Inspection" }
+          ]
+        },
+        {
+          "id": "g7",
+          "title": "Bearings and axle nut",
+          "parts": ["wheel_bearings"],
+          "text": "Check the condition of the wheel bearings. When they are out, reject a bearing for galling, spalling or brinelling. The axle nut is torqued as specified: too loose and the wheel moves and the bearing cups can spin; too tight and the bearing cannot carry the load properly.",
+          "check": "What causes brinelling of a bearing?",
+          "answer": "Excessive impact.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(7)" },
+            { "doc": "amta", "ch": "13", "page": "13-36", "section": "Axle Nut Torque" },
+            { "doc": "amta", "ch": "13", "page": "13-38", "section": "Wheel Bearing Inspection" }
+          ]
+        },
+        {
+          "id": "g8",
+          "title": "Tires",
+          "parts": ["main_tire", "nose_tire"],
+          "text": "Check each tire for wear and cuts. Set the pressure from the aircraft manufacturer's data, never from the sidewall or by how the tire looks, with the tire cooled to ambient temperature. Look for an even tread wear pattern, and replace a tire whose sidewall cords are exposed.",
+          "check": "Where does the correct tire pressure come from?",
+          "answer": "The aircraft manufacturer's maintenance data, not the tire sidewall or how the tire looks.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(8)" },
+            { "doc": "amta", "ch": "13", "page": "13-78", "section": "Inflation" },
+            { "doc": "amta", "ch": "13", "page": "13-79", "section": "Tread Depth and Wear Pattern" },
+            { "doc": "amta", "ch": "13", "page": "13-83", "section": "Sidewall Condition" }
+          ]
+        },
+        {
+          "id": "g9",
+          "title": "Brakes",
+          "parts": ["brake_caliper", "brake_disc"],
+          "text": "Check the brakes for lining wear against the manufacturer's limits, air in the system, fluid level, leaks and bolt torque. The disc must not be warped or have its surface damaged.",
+          "check": "List the common brake inspection items.",
+          "answer": "Lining wear, air in the brake system, fluid quantity level, leaks and proper bolt torque.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(9)" },
+            { "doc": "amta", "ch": "13", "page": "13-66", "section": "Brake Inspection and Service" },
+            { "doc": "amta", "ch": "13", "page": "13-72", "section": "Brake Malfunctions and Damage" }
+          ]
+        },
+        {
+          "id": "g10",
+          "title": "Items for other gear types",
+          "parts": ["gear_attach"],
+          "text": "Appendix D's remaining landing gear items apply where the airplane has them: retracting and locking mechanisms for improper operation, the gear electrical system for chafing and switch operation, and floats or skis for attachment and defects. Note them as not applicable on this fixed-gear trainer.",
+          "check": "Which Appendix D landing gear item covers retractable gear?",
+          "answer": "The retracting and locking mechanism, for improper operation.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(e)(4)" },
+            { "doc": "cfr43d", "loc": "(e)(6)" },
+            { "doc": "cfr43d", "loc": "(e)(10)" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "wheel_tire_brake_check",
+      "title": "Wheel, tire and brake check",
+      "aliases": ["wheel tire and brake", "tire and brake check", "tire check", "brake check", "wheels and brakes", "tires and brakes"],
+      "summary": "A closer look at one main wheel: tire, wheel halves, brake linings, disc and line.",
+      "steps": [
+        {
+          "id": "b1",
+          "title": "Tire pressure",
+          "parts": ["main_tire"],
+          "text": "Check pressure only when the tire has cooled to ambient temperature, against the manufacturer's figure. A tire measured with the airplane on jacks reads lower than on the ground.",
+          "check": "Why does a tire read lower with the airplane on jacks?",
+          "answer": "The unloaded tire has a larger gas volume inside it.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-78", "section": "Inflation" },
+            { "doc": "amta", "ch": "13", "page": "13-79", "section": "Inflation" }
+          ]
+        },
+        {
+          "id": "b2",
+          "title": "Tread and sidewalls",
+          "parts": ["main_tire", "nose_tire"],
+          "text": "Evenly worn tread is a sign of good tire maintenance. Look for cuts, chunking and weather damage; a cut, gouge or snag that exposes the sidewall cords means the tire is replaced.",
+          "check": "A sidewall cut doesn't reach the cords. Is the tire usually serviceable?",
+          "answer": "Typically yes; sidewall damage that does not reach the cords is usually acceptable.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-79", "section": "Tread Depth and Wear Pattern" },
+            { "doc": "amta", "ch": "13", "page": "13-83", "section": "Sidewall Condition" }
+          ]
+        },
+        {
+          "id": "b3",
+          "title": "Wheel halves and valve stem",
+          "parts": ["main_wheel"],
+          "text": "Check the wheel for cracks, flaked paint and signs of overheating, the tie bolts for security, and that the valve stem is straight and capped.",
+          "check": "What sign on a wheel suggests the brakes have overheated it?",
+          "answer": "Evidence of overheating, such as flaked paint, found while examining the wheel.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-36", "section": "Wheel Inspection" },
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+          ]
+        },
+        {
+          "id": "b4",
+          "title": "Brake linings",
+          "parts": ["brake_caliper"],
+          "text": "Linings wear by design. Check the remaining lining against the manufacturer's limits with the brake installed; many brakes have a built-in wear indicator pin.",
+          "check": "Whose figures say when a lining is worn out?",
+          "answer": "The aircraft manufacturer's maintenance information.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-66", "section": "Lining Wear" },
+            { "doc": "amta", "ch": "13", "page": "13-67", "section": "Lining Wear" }
+          ]
+        },
+        {
+          "id": "b5",
+          "title": "Brake disc",
+          "parts": ["brake_disc"],
+          "text": "Inspect the disc: it must not be warped, and its surface treatment must not be damaged.",
+          "check": "Name one disc condition that is cause for concern.",
+          "answer": "Warping, or a damaged surface treatment.",
+          "sources": [
+            { "doc": "amta", "ch": "13", "page": "13-72", "section": "Brake Malfunctions and Damage" }
+          ]
+        },
+        {
+          "id": "b6",
+          "title": "Brake line",
+          "parts": ["brake_line"],
+          "text": "Finish at the line: secure, dry, no leaks, no abrasion or deep cracking.",
+          "check": "How much leaking brake fluid is acceptable?",
+          "answer": "None: any leaking fluid is unacceptable.",
+          "sources": [
+            { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" },
+            { "doc": "cfr43d", "loc": "(e)(5)" }
+          ]
+        }
+      ]
+    }
+  ]
+}

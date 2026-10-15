@@ -1,31 +1,37 @@
 // The 3D stage: one persistent canvas, woven by the DisplayXR inline-3D SDK when the browser and
 // display support it and rendered as ordinary 2D otherwise.
 //
-// Why a CAMERA rig: the trainee works around a real-size engine and the instructor flies the view
-// from part to part, so the viewpoint is state this app owns (docs/authoring-inline-3d.md, "Which
-// rig"). The scene is authored in metres, so the rig's literal 63 mm eye separation is the right
-// depth, and convergence follows the focused part so it sits on the glass. Convergence never goes
-// nearer than MIN_DIST (comfort: diopters x 0.5 <= 1 keeps it past 0.5 m).
+// Why a CAMERA rig: the trainee works around a real-size subject (an engine, a whole airplane, a
+// landing gear, a tail) and the instructor flies the view from part to part, so the viewpoint is
+// state this app owns (docs/authoring-inline-3d.md, "Which rig"). The scene is authored in metres.
+// The eye separation scales with viewing distance (ipdFactorFor in view.js), so an airplane 13 m
+// away has the depth of a model on the desk rather than looking flat, and the trainee's Depth
+// slider scales it further. Convergence sits just beyond the focused part, so the part floats a
+// little in front of the glass, and never nearer than MIN_DIST (comfort: diopters x 0.5 <= 1).
 //
 // The eyes are parented under the app camera and the rig is sent identity-posed every frame (the
 // attach pattern), so a flying camera has no one-frame stereo lag.
 
 import * as THREE from 'three';
 import { createInline3D, inline3dViewRigSupported, inline3dDisplayModesSupported } from '@displayxr/inline3d';
-import { EyeCamera, cameraRigFromCamera } from '@displayxr/inline3d/three';
-import { buildTrainerEngine } from './trainer-engine.js';
-import { MIN_DIST, focusView, orbitPosition } from './view.js';
+import { EyeCamera, cameraRigFromCamera, DepthCursor } from '@displayxr/inline3d/three';
+import { MODELS, solidHits } from './models/index.js';
+import { MIN_DIST, focusView, ipdFactorFor, orbitPosition } from './view.js';
 
-const MAX_DIST = 4.2;
 const FLY_MS = 1100;
-const HOME = { target: [0, -0.02, -0.02], yaw: 0.65, pitch: 0.32, dist: 2.25 };
+const POP = 1.12; // convergence / focus distance: > 1 puts the focused part slightly out of the glass
 const ACCENT = new THREE.Color(0xffb020);
 
 export class Scene3D {
   constructor(canvas, knowledge) {
     this.canvas = canvas;
     this.k = knowledge;
-    this.assetId = 'trainer-engine';
+    this.training = knowledge.training;
+    this.stage = this.training.stage;
+    this.home0 = this.stage.home;
+    this.maxDist = this.stage.maxDist;
+    this.depthGain = 1;
+    this.assetId = this.training.asset;
     this.anchors = new Map(); // partId -> THREE.Vector3 for the loaded asset
     this.partMeshes = new Map(); // partId -> [meshes]  (trainer engine and tagged glTFs)
     this.highlighted = [];
@@ -50,12 +56,16 @@ export class Scene3D {
     rim.position.set(-2, 1, -1.5);
     this.scene.add(rim);
     const floor = new THREE.Mesh(
-      new THREE.CircleGeometry(2.4, 64),
+      new THREE.CircleGeometry(this.stage.floorRadius, 96),
       new THREE.MeshStandardMaterial({ color: 0x23272e, roughness: 0.95, metalness: 0 }),
     );
     floor.rotation.x = -Math.PI / 2;
-    floor.position.y = -1.05; // below the propeller tip (radius ~0.95 m)
+    floor.position.y = this.stage.floorY;
     this.scene.add(floor);
+    // A faint grid gives the floor parallax cues, so the depth reads even on plain surfaces.
+    const grid = new THREE.PolarGridHelper(this.stage.floorRadius, 16, 8, 96, 0x39414c, 0x2c333d);
+    grid.position.y = this.stage.floorY + 0.002;
+    this.scene.add(grid);
 
     this.content = new THREE.Group(); // the loaded asset lives here
     this.scene.add(this.content);
@@ -69,7 +79,8 @@ export class Scene3D {
     this.eyes = [new EyeCamera(THREE), new EyeCamera(THREE)];
     this.rigScratch = {};
 
-    this.orbit = { target: new THREE.Vector3(...HOME.target), yaw: HOME.yaw, pitch: HOME.pitch, dist: HOME.dist };
+    const H = this.home0;
+    this.orbit = { target: new THREE.Vector3(...H.target), yaw: H.yaw, pitch: H.pitch, dist: H.dist };
     this.fly = null;
     this.placeCamera();
     this.bindPointer();
@@ -99,6 +110,10 @@ export class Scene3D {
     this.woven = true;
     this.sizeToCanvas();
     this.setAttached(true);
+    // The SDK's depth cursor: over a part that comes out of the glass the arrow rises to it instead
+    // of being drawn behind it. The eyes hang off this.cam, so that is the view space.
+    this.cursor = new DepthCursor(THREE, { canvas: this.canvas, hitTest: this.hitTest(), viewSpace: this.cam });
+    this.scene.add(this.cursor.object);
     // The first rig goes in at construction so the very first located frame is already ours.
     this.handle = this.wall.addScene(this.canvas, (views, layer) => this.xrFrame(views, layer), {
       viewRig: this.currentRig(),
@@ -133,11 +148,30 @@ export class Scene3D {
   }
 
   currentRig() {
+    const d = this.orbit.dist;
     return cameraRigFromCamera(THREE, this.cam, {
-      convergence: Math.max(MIN_DIST, this.orbit.dist),
+      convergence: Math.max(MIN_DIST, d * POP),
+      ipdFactor: ipdFactorFor(d, this.stage.depthRef, this.depthGain),
       attach: true,
       out: this.rigScratch,
     });
+  }
+
+  /** Depth slider: 0 is flat, 1 the default, 2 twice the stereo. */
+  setDepth(gain) {
+    this.depthGain = clamp(gain, 0, 2);
+  }
+
+  /** World-space ray -> nearest solid point on the model, for the depth cursor. */
+  hitTest() {
+    const ray = new THREE.Raycaster();
+    const o = new THREE.Vector3();
+    const d = new THREE.Vector3();
+    return (origin, direction) => {
+      ray.set(o.fromArray(origin), d.fromArray(direction).normalize());
+      const hit = solidHits(ray.intersectObject(this.content, true))[0];
+      return hit ? [hit.point.x, hit.point.y, hit.point.z] : null;
+    };
   }
 
   sizeToCanvas() {
@@ -159,6 +193,7 @@ export class Scene3D {
     this.tick();
     this.handle.setViewRig(this.currentRig());
     this.scene.updateMatrixWorld();
+    this.cursor?.update(views);
     const r = this.renderer;
     r.clear();
     r.setScissorTest(true);
@@ -225,25 +260,27 @@ export class Scene3D {
         target: target.clone(),
         yaw: yaw ?? this.orbit.yaw,
         pitch: clamp(pitch ?? this.orbit.pitch, -1.2, 1.35),
-        dist: clamp(dist ?? this.orbit.dist, MIN_DIST, MAX_DIST),
+        dist: clamp(dist ?? this.orbit.dist, MIN_DIST, this.maxDist),
       },
     };
   }
 
   home() {
-    this.flyTo({ target: new THREE.Vector3(...HOME.target), yaw: HOME.yaw, pitch: HOME.pitch, dist: this.homeDist() });
+    const H = this.home0;
+    this.flyTo({ target: new THREE.Vector3(...H.target), yaw: H.yaw, pitch: H.pitch, dist: this.homeDist() });
   }
 
-  /** Far enough that the whole engine (about 2 m with the propeller) fits a tall canvas too. */
+  /** Far enough that the whole subject fits a tall canvas too. */
   homeDist() {
-    return clamp(HOME.dist / Math.min(1, this.cam.aspect * 1.25), HOME.dist, MAX_DIST);
+    const H = this.home0;
+    return clamp(H.dist / Math.min(1, this.cam.aspect * 1.25), H.dist, this.maxDist);
   }
 
   /** Fly to a part: look at its anchor from its preferred side, close enough to read it. */
   focusPart(id) {
     const a = this.anchors.get(id);
     if (!a) return false;
-    this.flyTo({ target: a, ...focusView(this.k.part(id)) });
+    this.flyTo({ target: a, ...focusView(this.k.part(id), this.stage) });
     return true;
   }
 
@@ -280,20 +317,21 @@ export class Scene3D {
     this.highlight([]);
   }
 
-  loadTrainerEngine() {
+  /** The training's built-in model (web/app/models/), whose geometry parts.json's anchors are measured on. */
+  loadBuiltin() {
     this.clearContent();
-    const engine = buildTrainerEngine(THREE);
-    engine.traverse((o) => {
+    const model = MODELS[this.training.model](THREE);
+    model.traverse((o) => {
       if (o.isMesh && o.userData.partId) {
         o.material = o.material.clone(); // per-part highlight
         if (!this.partMeshes.has(o.userData.partId)) this.partMeshes.set(o.userData.partId, []);
         this.partMeshes.get(o.userData.partId).push(o);
       }
     });
-    this.content.add(engine);
-    this.assetId = 'trainer-engine';
+    this.content.add(model);
+    this.assetId = this.training.asset;
     this.setAnchors(null);
-    return { id: this.assetId, label: 'Trainer engine (built-in)' };
+    return { id: this.assetId, label: `${this.training.short} model (built-in)` };
   }
 
   /** A glTF/GLB. Meshes or nodes named after a part id (e.g. "oil_filter") become pickable parts. */
@@ -346,7 +384,7 @@ export class Scene3D {
   setAnchors(overrides) {
     this.anchors.clear();
     for (const p of this.k.parts) {
-      const xyz = overrides?.[p.id] || p.anchors?.[this.assetId] || (this.assetId === 'trainer-engine' ? p.anchor : null);
+      const xyz = overrides?.[p.id] || p.anchors?.[this.assetId] || (this.assetId === this.training.asset ? p.anchor : null);
       if (xyz) this.anchors.set(p.id, new THREE.Vector3(...xyz));
     }
   }
@@ -372,7 +410,7 @@ export class Scene3D {
     this._ray ??= new THREE.Raycaster();
     this._ray.set(this.cam.position, dir.normalize());
     this._ray.far = dist - 0.03;
-    const hit = this._ray.intersectObject(this.content, true)[0];
+    const hit = solidHits(this._ray.intersectObject(this.content, true))[0];
     return !!hit && hit.object.userData.partId !== id;
   }
 
@@ -384,7 +422,7 @@ export class Scene3D {
     ray.setFromCamera(ndc, this.cam);
     let hit = null;
     try {
-      hit = ray.intersectObject(this.content, true).find((h) => h.object.visible) || null;
+      hit = solidHits(ray.intersectObject(this.content, true)).find((h) => h.object.visible) || null;
     } catch {
       hit = null; // an object without raycast support
     }
@@ -432,7 +470,7 @@ export class Scene3D {
     c.addEventListener('wheel', (e) => {
       e.preventDefault();
       this.fly = null;
-      this.orbit.dist = clamp(this.orbit.dist * Math.exp(e.deltaY * 0.001), MIN_DIST, MAX_DIST);
+      this.orbit.dist = clamp(this.orbit.dist * Math.exp(e.deltaY * 0.001), MIN_DIST, this.maxDist);
     }, { passive: false });
   }
 }

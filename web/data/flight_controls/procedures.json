@@ -1,0 +1,207 @@
+{
+  "version": 1,
+  "note": "Training walkthroughs paraphrased from 14 CFR 43 Appendix D (c) and (g) and FAA-H-8083-31B Chapter 2. Not approved maintenance data: the aircraft manufacturer's instructions govern every cable tension, travel and balance limit.",
+  "procedures": [
+    {
+      "id": "empennage_100h",
+      "title": "100-hour empennage and flight control inspection",
+      "aliases": [
+        "empennage inspection",
+        "tail inspection",
+        "100 hour tail",
+        "100-hour tail",
+        "hundred hour tail",
+        "empennage",
+        "flight control inspection",
+        "tail group"
+      ],
+      "summary": "The empennage item of a 100-hour inspection and the flight controls that drive it: surfaces, hinges, horns, cables, pulleys, turnbuckles, tension, travel and trim.",
+      "steps": [
+        {
+          "id": "c1",
+          "title": "Open up and clean",
+          "parts": ["horizontal_stabilizer", "vertical_fin"],
+          "text": "Remove the tailcone inspection plates and fairings so the cables, pulleys and horns inside can be seen, and clean the area. Appendix D asks for every component of the empennage assembly to be inspected where applicable.",
+          "check": "Why open the inspection plates rather than look from outside?",
+          "answer": "The cables, pulleys and horns are inside the tailcone; they can only be inspected with the plates removed.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(a)" },
+            { "doc": "cfr43d", "loc": "(g)" }
+          ]
+        },
+        {
+          "id": "c2",
+          "title": "Fixed surfaces",
+          "parts": ["horizontal_stabilizer", "vertical_fin"],
+          "text": "Inspect the stabilizer and fin for poor general condition, skin deterioration, distortion, evidence of failure and insecure attachment. Look hardest at spar lines and attach points, and at the leading edges.",
+          "check": "Name three conditions Appendix D lists for the empennage.",
+          "answer": "Any three of: poor general condition, fabric or skin deterioration, distortion, evidence of failure, insecure attachment, improper installation, improper operation.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(g)" },
+            { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" }
+          ]
+        },
+        {
+          "id": "c3",
+          "title": "Elevator and rudder",
+          "parts": ["elevator", "rudder"],
+          "text": "Check the movable surfaces for damage, correct installation and secure attachment. A surface that has been repaired or repainted may need rebalancing: a tail-heavy surface, static underbalance, is not usually allowed.",
+          "check": "On a balance stand, the trailing edge drops below horizontal. What does that show?",
+          "answer": "Underbalance (a tail-heavy surface).",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(g)" },
+            { "doc": "amta", "ch": "2", "page": "2-36", "section": "Static Balance" }
+          ]
+        },
+        {
+          "id": "c4",
+          "title": "Hinges and horns",
+          "parts": ["hinges", "control_horns"],
+          "text": "Check each hinge and horn for cracks, wear and security, and that every bolt, cotter pin and self-locking nut is in place and safetied as required.",
+          "check": "What does Appendix D say about the flight controls in the cabin and cockpit group?",
+          "answer": "Check them for improper installation and improper operation.",
+          "sources": [
+            { "doc": "cfr43d", "loc": "(c)(5)" },
+            { "doc": "amta", "ch": "2", "page": "2-55", "section": "Cotter Pins and Self-Locking Nuts" }
+          ]
+        },
+        {
+          "id": "c5",
+          "title": "Cables",
+          "parts": ["control_cables"],
+          "text": "Broken wires are easy to see; wear, corrosion and distortion are not. Concentrate on the critical fatigue areas: wherever the cable runs over, under or around a pulley, through a fairlead, is flexed or rubbed, or is near a swaged fitting. Rub a rag along the cable there: broken strands snag it.",
+          "check": "How does the rag test find broken strands?",
+          "answer": "The rag snags on any broken strand as it is rubbed along the cable.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-41", "section": "Cable Inspection" }
+          ]
+        },
+        {
+          "id": "c6",
+          "title": "Pulleys and fairleads",
+          "parts": ["pulleys"],
+          "text": "Each pulley must turn smoothly and show no abnormal wear pattern, which points to a problem elsewhere such as misalignment or wrong tension. Fairleads guide cables straight through structure and must not deflect them more than slightly.",
+          "check": "What can an abnormal wear pattern on a pulley tell you?",
+          "answer": "That there is another problem in the cable system, such as misalignment or incorrect tension.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-42", "section": "Cable Guides" },
+            { "doc": "amta", "ch": "2", "page": "2-43", "section": "Pulley wear patterns" }
+          ]
+        },
+        {
+          "id": "c7",
+          "title": "Turnbuckles",
+          "parts": ["turnbuckles"],
+          "text": "Check both terminals are screwed into the barrel an equal amount, with no more than three threads showing on either side, and that the turnbuckle is safetied. A double-wrap safety wire is the preferred method.",
+          "check": "What must happen after a turnbuckle is adjusted?",
+          "answer": "It must be safetied.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-44", "section": "Turnbuckles" }
+          ]
+        },
+        {
+          "id": "c8",
+          "title": "Cable tension",
+          "parts": ["turnbuckles", "control_cables"],
+          "text": "Measure cable tension with a tensiometer and compare it with the manufacturer's figure, allowing for the temperature of the cable and the airplane. Adjust at the turnbuckles if needed.",
+          "check": "Why does temperature matter when setting cable tension?",
+          "answer": "The aluminium structure and steel cables expand differently with temperature, so tension changes with it.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-50", "section": "Cable Tension" },
+            { "doc": "amta", "ch": "2", "page": "2-44", "section": "Tension Regulators" }
+          ]
+        },
+        {
+          "id": "c9",
+          "title": "Travel and stops",
+          "parts": ["elevator", "rudder"],
+          "text": "Move each surface to its stops and check the travel against the maintenance manual. With the control against its stops, the cables and chains must not have reached the end of their own travel.",
+          "check": "Where are the two sets of stops usually found?",
+          "answer": "One at the control surface and one at the flight deck control.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-52", "section": "Control Surface Travel" },
+            { "doc": "cfr43d", "loc": "(c)(5)" }
+          ]
+        },
+        {
+          "id": "c10",
+          "title": "Trim system",
+          "parts": ["trim_actuator", "trim_tab"],
+          "text": "Check the trim actuator and its push rod for security and wear, then run the trim through its range: the tab must move freely and correctly. Trim systems are rigged in a similar way to the main surfaces.",
+          "check": "Which Appendix D empennage condition does a binding trim tab fall under?",
+          "answer": "Improper component operation.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-52", "section": "Rigging Checks (trim tab systems)" },
+            { "doc": "cfr43d", "loc": "(g)" }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "control_cable_check",
+      "title": "Control cable, pulley and turnbuckle check",
+      "aliases": ["cable check", "control cable check", "cable inspection", "cables pulleys and turnbuckles", "rag test"],
+      "summary": "A focused look at the cable run from the horns forward: fatigue areas, the rag test, pulleys, fairleads and turnbuckles.",
+      "steps": [
+        {
+          "id": "k1",
+          "title": "Start at the horns",
+          "parts": ["control_horns", "control_cables"],
+          "text": "Begin where each cable attaches to its horn: check the fitting is secure and properly safetied, then follow the cable forward.",
+          "check": "What moves the elevator when a cable is pulled?",
+          "answer": "The control horn on the elevator, which the cable pulls on.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-52", "section": "Checking and Safetying the System" },
+            { "doc": "cfr43d", "loc": "(c)(5)" }
+          ]
+        },
+        {
+          "id": "k2",
+          "title": "Find the fatigue areas",
+          "parts": ["control_cables"],
+          "text": "The critical fatigue areas are where the cable runs over, under or around a pulley, through a sleeve or fairlead, where it is flexed or rubbed, and near a swaged-on fitting. They are also prime areas for corrosion.",
+          "check": "Name two critical fatigue areas on a cable run.",
+          "answer": "Any two of: around a pulley, through a sleeve or fairlead, where flexed or rubbed, near a swaged-on fitting.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-41", "section": "Cable Inspection" }
+          ]
+        },
+        {
+          "id": "k3",
+          "title": "Rag test",
+          "parts": ["control_cables"],
+          "text": "Rub a rag along the cable in each fatigue area. Broken strands snag the rag.",
+          "check": "What makes the rag snag?",
+          "answer": "Broken strands.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-41", "section": "Cable Inspection" }
+          ]
+        },
+        {
+          "id": "k4",
+          "title": "Pulleys",
+          "parts": ["pulleys"],
+          "text": "Turn each pulley: smooth rotation, secure bracket, no abnormal wear pattern. The sealed bearings need no added lubrication.",
+          "check": "Do sealed pulley bearings need lubricating at inspection?",
+          "answer": "No; they need no lubrication other than what was done at the factory.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-41", "section": "Cable Guides" },
+            { "doc": "amta", "ch": "2", "page": "2-42", "section": "Cable Guides" }
+          ]
+        },
+        {
+          "id": "k5",
+          "title": "Turnbuckles and safety wire",
+          "parts": ["turnbuckles"],
+          "text": "Check thread engagement and that each turnbuckle is safetied, by double-wrap safety wire or an approved clip-type locking device.",
+          "check": "How many threads may show outside the barrel on either side?",
+          "answer": "Not more than three.",
+          "sources": [
+            { "doc": "amta", "ch": "2", "page": "2-44", "section": "Turnbuckles" },
+            { "doc": "amta", "ch": "2", "page": "2-45", "section": "Clip-type locking device" }
+          ]
+        }
+      ]
+    }
+  ]
+}

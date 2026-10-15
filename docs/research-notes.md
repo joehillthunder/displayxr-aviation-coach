@@ -43,3 +43,26 @@
 ## Open items
 - "Muse" adapter: API details still needed; it ships as a stub (`POST /api/muse` returns 501).
 - Wright Flyer GLB: CC0 and recorded in web/assets/LICENSES.md, but not bundled (wrong engine type for these lessons).
+
+## Added 2026-10-14: sources for the preflight, landing gear and flight controls trainings
+Page numbers are the printed footer labels, checked in the PDFs (not the tables of contents, which
+differ by a page in places).
+- 14 CFR 43 App. D (eCFR): (c) cabin and cockpit, (c)(3) windows and windshields, (c)(5) flight and
+  engine controls (improper installation, improper operation); (e)(1)-(10) landing gear group; (f) wing
+  and center section and (g) empennage have no numbered items.
+- FAA-H-8083-3C Airplane Flying Handbook (2021), Ch. 2 Ground Operations
+  (https://www.faa.gov/sites/faa.gov/files/regulations_policies/handbooks_manuals/aviation/airplane_handbook/03_afh_ch2.pdf):
+  cabin items 2-5; outer wing surfaces and tail section 2-6..2-7; fuel quantity, stains, contamination 2-9;
+  sumps, strainer, vent, oil dipstick, caps 2-10; landing gear, tires, brakes, cowling 2-11; spinner,
+  propeller, inside the cowling, air filter 2-12; chocks with the engine running 2-17; flight controls
+  full range in the before-takeoff check 2-21; chocks, tie-downs 2-23. Pitot tube, static ports and
+  stall warning are not walk-around items in this chapter, so the preflight training leaves them out.
+- FAA-H-8083-31B AMT Airframe (2023), one PDF
+  (https://www.faa.gov/regulations_policies/handbooks_manuals/aviation/FAA-H-8083-31B_Aviation_Maintenance_Technician_Handbook.pdf):
+  Ch. 13: leaf-type spring gear 13-6; shock struts 13-7; torque links 13-9; servicing shock struts
+  13-12..13-13; shimmy dampers 13-30, piston type 13-32; wheel inspection and axle nut torque 13-36;
+  wheel bearing inspection 13-38; tie bolts 13-41; brake inspection, lining wear 13-66..13-67; brake
+  damage (warped discs) 13-72; tire inflation 13-78..13-79; tread 13-79; sidewalls 13-83.
+  Ch. 2: static balance 2-36; cable inspection and rag test, pulleys 2-41; pulleys, fairleads 2-42;
+  pulley wear patterns 2-43; turnbuckles, push rods, tension regulators 2-44; cable tension 2-50;
+  travel, stops, trim tabs, checking and safetying 2-52; cotter pins and self-locking nuts 2-55.

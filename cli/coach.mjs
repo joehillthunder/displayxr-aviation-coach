@@ -2,7 +2,8 @@
 // Mock-mode instructor in the terminal: the same coach, tools and grounding as the 3D page, with a
 // text stage instead of the woven scene. No keys, no network.
 //
-//   npm run mock                      interactive
+//   npm run mock                      interactive (the default training)
+//   npm run mock -- --training preflight                   another training (web/data/trainings.json)
 //   echo "start spark plug inspection" | npm run mock     scripted (one line per turn)
 
 import { readFile } from 'node:fs/promises';
@@ -18,7 +19,8 @@ const here = dirname(fileURLToPath(import.meta.url));
 const dataDir = join(here, '..', 'web', 'data');
 const dim = (s) => (process.stdout.isTTY ? `\x1b[2m${s}\x1b[0m` : s);
 
-const k = await Knowledge.load(async (f) => JSON.parse(await readFile(join(dataDir, f), 'utf8')), '');
+const arg = process.argv.indexOf('--training');
+const k = await Knowledge.load(async (f) => JSON.parse(await readFile(join(dataDir, f), 'utf8')), '', arg > 0 ? process.argv[arg + 1] : null);
 const stage = {
   focusPart: (id) => console.log(dim(`  [camera] fly to ${k.part(id).name}`)),
   highlightPart: (ids) => ids.length && console.log(dim(`  [highlight] ${ids.map((id) => k.part(id).name).join(', ')}`)),
@@ -29,7 +31,7 @@ const stage = {
 const coach = new Coach(k, stage);
 const instructor = new Instructor(coach, new MockAdapter(coach));
 
-console.log('3D Maintenance Coach (mock CLI). TRAINING DEMO ONLY, not approved maintenance data.');
+console.log(`3D Aviation Coach (mock CLI): ${k.training.title}. TRAINING DEMO ONLY, not approved maintenance data.`);
 console.log('Type "help". "pick <part id>" answers a quiz by part id. Ctrl+C to quit.\n');
 
 const rl = createInterface({ input: process.stdin, output: process.stdout, terminal: process.stdin.isTTY });

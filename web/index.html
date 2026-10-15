@@ -3,19 +3,22 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>3D Maintenance Coach: Aviation</title>
-<meta name="description" content="Glasses-free 3D aircraft maintenance trainer. An AI instructor walks a trainee through a 100-hour engine inspection. Training demo only.">
+<title>3D Aviation Coach</title>
+<meta name="description" content="Glasses-free 3D aviation trainer. An AI instructor walks a trainee through an engine 100-hour inspection, a preflight walk-around, a landing gear inspection and the flight-control cables. Training demo only.">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="safety" role="alert">
-  <strong>Training demo only.</strong> Not approved maintenance data. Follow the aircraft, engine and propeller
-  manufacturers' instructions, and work under a certificated mechanic.
+  <strong>Training demo only.</strong> Not approved maintenance data, and no substitute for the airplane's own checklist.
+  Follow the aircraft, engine and propeller manufacturers' instructions, and work under a certificated mechanic or flight instructor.
 </div>
 
 <header class="bar">
-  <h1>3D Maintenance Coach <span>Aviation</span></h1>
+  <h1>3D Aviation Coach <span id="lessonName">Engine 100-hour inspection</span></h1>
   <div class="controls">
+    <label>Training
+      <select id="training"></select>
+    </label>
     <label>Procedure
       <select id="procedure"></select>
     </label>
@@ -35,14 +38,17 @@
   <section class="stage" id="stage">
     <!-- Bare, as a woven canvas must be: no CSS effects on it or its ancestors. Everything drawn over
          it is a later sibling with a plain background (draw-order occlusion). -->
-    <canvas id="view" aria-label="3D engine view. Drag to look around, scroll to zoom, click a part."></canvas>
+    <canvas id="view" aria-label="3D view. Drag to look around, scroll to zoom, click a part."></canvas>
     <div class="labels" id="labels" aria-hidden="true"></div>
     <div class="quiz-banner" id="quizBanner" hidden></div>
     <div class="status" id="status">loading…</div>
-    <div class="poster" id="poster">Loading the engine…</div>
+    <div class="poster" id="poster">Loading the model…</div>
     <div class="stage-tools">
       <button type="button" id="home" title="Reset the view">Home view</button>
       <button type="button" id="labelsToggle" aria-pressed="true" title="Show part labels">Labels</button>
+      <label class="depth" title="Stereo strength on a 3D display">Depth
+        <input type="range" id="depth" min="0" max="2" step="0.25" value="1">
+      </label>
     </div>
   </section>
 

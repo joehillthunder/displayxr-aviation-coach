@@ -20,7 +20,7 @@ export class OpenAIRealtimeAdapter {
 
   async connect() {
     if (this.pc) return;
-    const res = await fetch(this.endpoint);
+    const res = await fetch(`${this.endpoint}?training=${encodeURIComponent(this.coach.k.training?.id || '')}`);
     const data = await res.json().catch(() => ({}));
     if (!res.ok) throw new Error(data.error || `session request failed (${res.status})`);
 

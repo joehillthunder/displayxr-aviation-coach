@@ -1,11 +1,11 @@
 // Mock mode end to end: trainee text in, grounded reply and stage actions out, with no network.
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { mockRig } from './helpers.mjs';
+import { mockRig, trainings } from './helpers.mjs';
 import { NOT_IN_MATERIAL } from '../web/app/instructor/knowledge.js';
 
-test('walks every procedure from first to last step', async () => {
-  const { k, coach, instructor, log } = await mockRig();
+for (const t of trainings) test(`${t.id}: walks every procedure from first to last step`, async () => {
+  const { k, coach, instructor, log } = await mockRig(t.id);
   for (const proc of k.procedures) {
     let r = await instructor.ask(`start ${proc.title}`);
     assert.equal(coach.proc.id, proc.id, `started ${proc.id}`);
@@ -83,3 +83,23 @@ test('quiz: names a part, scores a click, reveals the answer', async () => {
   assert.deepEqual(r.score, { asked: 2, correct: 1 });
   assert.equal(instructor.pick('oil_filter'), null, 'no open question');
 });
+
+for (const t of trainings) {
+  test(`${t.id}: every part can be found by name, and help names this lesson`, async () => {
+    const { k, instructor, log } = await mockRig(t.id);
+    for (const p of k.parts) {
+      const r = await instructor.ask(`where is the ${p.name.toLowerCase()}`);
+      assert.deepEqual(r.citations, [{ kind: 'part', ref: p.id }], p.name);
+      assert.ok(log.some(([a, x]) => a === 'focus' && x === p.id), p.name);
+    }
+    const help = await instructor.ask('help');
+    assert.ok(help.text.includes(k.procedures[0].title.toLowerCase()));
+  });
+
+  test(`${t.id}: the quiz names parts of this lesson`, async () => {
+    const { k, coach, instructor } = await mockRig(t.id);
+    await instructor.ask('quiz me');
+    assert.ok(k.part(coach.quiz.partId));
+    assert.equal(instructor.pick(coach.quiz.partId).correct, true);
+  });
+}

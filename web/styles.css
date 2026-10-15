@@ -145,6 +145,8 @@ select, input { background: var(--card); border: 1px solid var(--line); border-r
 .stage-tools { position: absolute; right: 12px; bottom: 12px; display: flex; gap: 6px; }
 .stage-tools button { background: #111418; color: #e7eaee; border-color: #39414c; }
 .stage-tools button[aria-pressed="true"] { background: #ffb020; color: #1a1200; }
+.stage-tools .depth { display: flex; gap: 6px; align-items: center; background: #111418; color: #e7eaee; border: 1px solid #39414c; border-radius: 6px; padding: 2px 8px; font-size: 13px; }
+.stage-tools .depth input { width: 90px; padding: 0; border: 0; background: transparent; accent-color: #ffb020; }
 /* Covers the canvas until the first woven frame (never fades: woven-canvas rule 5). */
 .poster {
   position: absolute;

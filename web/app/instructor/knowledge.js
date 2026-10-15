@@ -1,4 +1,5 @@
-// The training material: parts.json, procedures.json and sources.json, indexed for lookup.
+// The training material for one training: its parts.json and procedures.json (web/data/<id>/) and
+// the shared sources.json, indexed for lookup. trainings.json lists the trainings.
 // Runs unchanged in the browser and in Node (the CLI and the tests), so it touches no DOM and no fs.
 
 export const NOT_IN_MATERIAL = "That's not in the training material.";
@@ -27,7 +28,8 @@ function stem(t) {
 }
 
 export class Knowledge {
-  constructor({ parts, procedures, sources }) {
+  constructor({ parts, procedures, sources, training = null }) {
+    this.training = training; // its trainings.json entry (id, title, subject, stage, ...)
     this.parts = parts.parts;
     this.procedures = procedures.procedures;
     this.sources = sources;
@@ -36,12 +38,23 @@ export class Knowledge {
     this._docs = this._buildIndex();
   }
 
-  /** Load the three JSON files with whatever fetcher the host has (fetch in the browser, fs in Node). */
-  static async load(readJson, base = 'data/') {
+  /** The trainings.json catalog. */
+  static catalog(readJson, base = 'data/') {
+    return readJson(`${base}trainings.json`);
+  }
+
+  /**
+   * Load one training (the catalog default when no id is given) with whatever fetcher the host has
+   * (fetch in the browser, fs in Node).
+   */
+  static async load(readJson, base = 'data/', trainingId = null) {
+    const catalog = await Knowledge.catalog(readJson, base);
+    const training = catalog.trainings.find((t) => t.id === (trainingId || catalog.default));
+    if (!training) throw new Error(`no training ${trainingId}`);
     const [parts, procedures, sources] = await Promise.all(
-      ['parts.json', 'procedures.json', 'sources.json'].map((f) => readJson(base + f)),
+      [`${training.id}/parts.json`, `${training.id}/procedures.json`, 'sources.json'].map((f) => readJson(base + f)),
     );
-    return new Knowledge({ parts, procedures, sources });
+    return new Knowledge({ parts, procedures, sources, training });
   }
 
   part(id) {
@@ -103,12 +116,15 @@ export class Knowledge {
     return scored.slice(0, limit);
   }
 
-  /** One citation as display text: "14 CFR 43 App. D (d)(4)" or "FAA-H-8083-32B Ch. 4, p. 4-36 (Spark Plug Removal)". */
+  /**
+   * One citation as display text: "14 CFR 43 App. D (d)(4)", or for a handbook
+   * "FAA-H-8083-32B Ch. 4, p. 4-36 (Spark Plug Removal)" (the page is optional).
+   */
   formatSource(src) {
     const doc = this.sources.documents[src.doc];
     if (!doc) return String(src.doc);
-    if (src.doc === 'cfr43d') return `${doc.short} ${src.loc}`;
-    return `${doc.short} Ch. ${src.ch}, p. ${src.page}${src.section ? ` (${src.section})` : ''}`;
+    if (src.loc) return `${doc.short} ${src.loc}`;
+    return `${doc.short} Ch. ${src.ch}${src.page ? `, p. ${src.page}` : ''}${src.section ? ` (${src.section})` : ''}`;
   }
 
   sourceUrl(src) {

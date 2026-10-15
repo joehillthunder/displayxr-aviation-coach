@@ -1,0 +1,234 @@
+{
+  "version": 1,
+  "units": "metres",
+  "frame": "Aircraft frame: +z forward (the nose), +y up, +x toward the LEFT wing (the pilot's left). Origin on the ground under the cabin.",
+  "note": "anchor = where the label and fly-to point sit on the built-in trainer aircraft (web/app/models/aircraft.js). Two-sided items (fuel caps, sumps, gear, chocks, tie-downs) are anchored on the left side.",
+  "parts": [
+    {
+      "id": "windshield",
+      "name": "Windshield",
+      "aliases": ["windscreen", "windshield and windows", "windows", "cabin", "cockpit", "flight deck"],
+      "anchor": [0.25, 2.06, 1.59],
+      "viewDir": [0.3, 0.55, 0.8],
+      "focusDist": 2.4,
+      "description": "The walk-around starts in the cabin with the airplane's checklist: control locks removed, switches off, trim set for takeoff, and the fuel gauges noted. Windshield and windows are checked for deterioration and breakage.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-5", "section": "Visual Preflight Assessment" },
+        { "doc": "cfr43d", "loc": "(c)(3)", "topic": "windows and windshields" }
+      ]
+    },
+    {
+      "id": "wings",
+      "name": "Wing skin and leading edges",
+      "aliases": ["wing", "wing skin", "leading edge", "leading edges", "spar line", "spar lines", "rivets", "wingtip", "wingtips", "wing tips"],
+      "anchor": [4, 2.17, 1.38],
+      "viewDir": [0.25, 0.25, 1],
+      "focusDist": 2.4,
+      "description": "Load-related stresses concentrate along spar lines and attach points, so the skin there is checked for ripples, dents and loose rivets. Leading edges take rock, bird and hangar-rash damage; fiberglass wingtips crack from screw holes.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+        { "doc": "afh", "ch": "2", "page": "2-7", "section": "Outer Wing Surfaces and Tail Section" }
+      ]
+    },
+    {
+      "id": "wing_struts",
+      "name": "Wing struts",
+      "aliases": ["strut", "struts", "wing strut", "attach points", "attach fittings", "wing attach"],
+      "anchor": [1.55, 1.52, 0.735],
+      "viewDir": [0.3, 0.1, 1],
+      "focusDist": 2.2,
+      "description": "The struts carry wing loads into the fuselage. Their attach points are among the critical areas the handbook names, where the skin is inspected for distortion and loose rivets or screws.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" }
+      ]
+    },
+    {
+      "id": "fuel_caps",
+      "name": "Fuel caps",
+      "aliases": ["fuel cap", "gas cap", "gas caps", "fuel tanks", "fuel tank", "tanks", "fuel quantity", "fuel level"],
+      "anchor": [0.95, 2.29, 0.8],
+      "viewDir": [0.35, 0.9, 0.3],
+      "focusDist": 1.6,
+      "description": "One cap on top of each wing tank. The pilot looks into each tank to confirm the quantity the gauges show, and makes sure every cap is securely back on after fueling.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-9", "section": "Fuel and Oil" },
+        { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+      ]
+    },
+    {
+      "id": "fuel_sumps",
+      "name": "Fuel sump drains",
+      "aliases": ["sump", "sumps", "fuel sump", "sump drain", "fuel drain", "fuel drains", "strainer", "fuel strainer", "quick drain", "fuel sample"],
+      "anchor": [0.95, 2.06, 0.6],
+      "viewDir": [0.45, -0.45, 0.75],
+      "focusDist": 1.4,
+      "description": "A drain at the low point of each wing tank, plus the fuel strainer quick drain under the cowling. Samples are drawn from each to check fuel grade by colour, and for water, dirt and odour.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" },
+        { "doc": "afh", "ch": "2", "page": "2-9", "section": "Fuel and Oil" }
+      ]
+    },
+    {
+      "id": "fuel_vent",
+      "name": "Fuel tank vent",
+      "aliases": ["vent", "fuel vent", "vent tube", "tank vent"],
+      "anchor": [2.3, 1.97, 0.9],
+      "viewDir": [0.5, -0.3, 0.8],
+      "focusDist": 1.2,
+      "description": "A tube under the wing that lets outside air into the tank as fuel is drawn out. A damaged or blocked vent can starve the engine of fuel.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+      ]
+    },
+    {
+      "id": "flaps",
+      "name": "Flaps",
+      "aliases": ["flap", "wing flaps"],
+      "anchor": [1.76, 2.22, -0.06],
+      "viewDir": [0.25, 0.75, -0.6],
+      "focusDist": 2.6,
+      "description": "The inboard trailing-edge surfaces. They are looked over with the wing for deterioration, distortion and loose or missing rivets or screws.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+        { "doc": "afh", "ch": "2", "page": "2-21", "section": "Before-Takeoff Check" }
+      ]
+    },
+    {
+      "id": "ailerons",
+      "name": "Ailerons",
+      "aliases": ["aileron"],
+      "anchor": [4.15, 2.22, -0.06],
+      "viewDir": [0.25, 0.75, -0.6],
+      "focusDist": 2.6,
+      "description": "The outboard trailing-edge control surfaces that roll the airplane. Like every flight control, they are later moved through their entire operating range in the before-takeoff check.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+        { "doc": "afh", "ch": "2", "page": "2-21", "section": "Before-Takeoff Check" }
+      ]
+    },
+    {
+      "id": "elevator",
+      "name": "Elevator and trim tab",
+      "aliases": ["elevators", "trim tab", "trim", "horizontal stabilizer", "stabilizer", "horizontal tail", "stab"],
+      "anchor": [1, 1.65, -4.77],
+      "viewDir": [0.35, 0.65, -0.7],
+      "focusDist": 2.6,
+      "description": "The movable surface behind the horizontal stabilizer, with a trim tab on its trailing edge. Trim is set for takeoff from the cabin; the stabilizer's spar line, attach points and leading edge get the same scrutiny as the wing's.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+        { "doc": "afh", "ch": "2", "page": "2-5", "section": "Visual Preflight Assessment" }
+      ]
+    },
+    {
+      "id": "rudder",
+      "name": "Rudder and fin",
+      "aliases": ["fin", "vertical stabilizer", "vertical tail", "tail", "tail section", "empennage"],
+      "anchor": [0.035, 2.3, -4.9],
+      "viewDir": [0.85, 0.2, -0.5],
+      "focusDist": 2.4,
+      "description": "The rudder hangs on the vertical stabilizer (fin). The fin's spar line, attach points and leading edge are among the areas the handbook says to scrutinize.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-6", "section": "Outer Wing Surfaces and Tail Section" },
+        { "doc": "afh", "ch": "2", "page": "2-7", "section": "Outer Wing Surfaces and Tail Section" }
+      ]
+    },
+    {
+      "id": "main_landing_gear",
+      "name": "Main landing gear",
+      "aliases": ["main gear", "mains", "main wheels", "main wheel", "tires", "tire", "tyres", "brakes", "brake", "wheels", "wheel", "landing gear"],
+      "anchor": [1.33, 0.25, 0.45],
+      "viewDir": [0.9, 0.25, 0.4],
+      "focusDist": 1.8,
+      "description": "Spring-steel legs, wheels, tires and disc brakes. The pilot looks for leaking fluid, checks tire inflation, tread and damage, wheel hubs and valve stems, brake pads and brake lines.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    },
+    {
+      "id": "nose_gear",
+      "name": "Nose gear",
+      "aliases": ["nose wheel", "nosewheel", "nose strut", "shimmy damper", "torque links", "torque link", "nose tire", "oleo"],
+      "anchor": [0, 0.45, 2.51],
+      "viewDir": [-0.5, 0.15, 0.85],
+      "focusDist": 1.6,
+      "description": "The steerable nose gear: an air-and-oil shock strut, torque links, a fork and a shimmy damper that damps oscillations of the nose wheel.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    },
+    {
+      "id": "cowling",
+      "name": "Cowling",
+      "aliases": ["cowl", "engine cowling", "cowling fasteners", "engine", "inside the cowling", "exhaust"],
+      "anchor": [0.52, 1.36, 2.35],
+      "viewDir": [1, 0.2, 0.3],
+      "focusDist": 1.8,
+      "description": "The covering around the engine. Its fasteners, rivets and latches are checked from above, the sides and below; inside it the pilot looks for oil and fuel leaks, loose objects and exhaust stains.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Engine and Propeller" },
+        { "doc": "afh", "ch": "2", "page": "2-12", "section": "Engine and Propeller" }
+      ]
+    },
+    {
+      "id": "oil_dipstick",
+      "name": "Oil dipstick",
+      "aliases": ["dipstick", "oil", "oil level", "oil door", "oil cap", "oil quantity"],
+      "anchor": [0.04, 1.88, 2.3],
+      "viewDir": [0.3, 0.9, 0.35],
+      "focusDist": 1.4,
+      "description": "Reached through a small door on top of the cowling. Oil level is checked on every preflight and rechecked with each refueling; the oil's colour is a clue to its condition.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-10", "section": "Fuel and Oil" }
+      ]
+    },
+    {
+      "id": "propeller",
+      "name": "Propeller and spinner",
+      "aliases": ["prop", "spinner", "blades", "blade", "propeller blades", "prop blades"],
+      "anchor": [-0.264, 1.783, 3.18],
+      "viewDir": [0.1, 0.15, 1],
+      "focusDist": 2.6,
+      "description": "The spinner must be free of dents, cracks and corrosion, and properly aligned. The blades are checked for erosion, nicks, cracks, pitting, corrosion and security.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-12", "section": "Engine and Propeller" }
+      ]
+    },
+    {
+      "id": "air_intake",
+      "name": "Air intake and filter",
+      "aliases": ["air filter", "intake", "air inlet", "induction", "induction air filter", "filter"],
+      "anchor": [0, 1, 2.875],
+      "viewDir": [-0.3, -0.05, 1],
+      "focusDist": 1.4,
+      "description": "The engine's induction air enters through a filter behind the front of the cowling. It must be free of dirt and blockages such as bugs or nests, and the element free of decomposition.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-12", "section": "Engine and Propeller" }
+      ]
+    },
+    {
+      "id": "chocks",
+      "name": "Wheel chocks",
+      "aliases": ["chock", "wheel chock", "wheel chocks"],
+      "anchor": [1.25, 0.06, 0.76],
+      "viewDir": [0.5, 0.5, 0.75],
+      "focusDist": 1.4,
+      "description": "Wedges in front of and behind the main wheels. If they are removed after the engine is running, the throttle is at idle and they are approached only from behind the propeller.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-17", "section": "Engine Starting" },
+        { "doc": "afh", "ch": "2", "page": "2-23", "section": "Engine Shutdown" }
+      ]
+    },
+    {
+      "id": "tie_downs",
+      "name": "Tie-downs",
+      "aliases": ["tie down", "tie downs", "tiedown", "tiedowns", "ropes", "rope", "chains"],
+      "anchor": [3.46, 1, 0.73],
+      "viewDir": [0.6, 0.15, 0.8],
+      "focusDist": 1.8,
+      "description": "Ropes or chains from the wing and tail tie-down rings to the ramp. A parked airplane is hangared or tied down with its flight controls secured.",
+      "sources": [
+        { "doc": "afh", "ch": "2", "page": "2-23", "section": "Post-Flight" }
+      ]
+    }
+  ]
+}

@@ -33,6 +33,13 @@ function leftover(text, names) {
   return tokens(text).filter((t) => !known.has(t) && !/^(where|show|find|look|see|inspection|inspect)$/.test(t));
 }
 
+/** The text with the part's own names taken out: "torque links" names a part, it asks for no torque. */
+function withoutNames(text, part) {
+  if (!part) return text;
+  const names = [part.name, part.id.replace(/_/g, ' '), ...(part.aliases || [])].map((n) => n.toLowerCase()).sort((a, b) => b.length - a.length);
+  return names.reduce((t, n) => t.split(n).join(' '), text);
+}
+
 export class MockAdapter {
   constructor(coach) {
     this.coach = coach;
@@ -85,7 +92,7 @@ export class MockAdapter {
       const cite = c.step ? `[step:${c.proc.id}/${c.step.id}]` : `[part:${c.focus}]`;
       return `Sources: ${r.sources.join('; ')}. ${cite}`;
     }
-    if (WANTS_VALUE.test(text)) return this.noValues(text, part);
+    if (WANTS_VALUE.test(withoutNames(text, part))) return this.noValues(text, part);
 
     // "where is X", "show me X", or just "X": a bare part reference flies to it.
     if (part && leftover(text, [part.name, part.id, ...(part.aliases || [])]).length <= 1) return this.partReply(part);
@@ -97,7 +104,7 @@ export class MockAdapter {
       return `${hit.text} [${hit.kind}:${hit.ref}]`;
     }
     if (part) return this.partReply(part);
-    return `${NOT_IN_MATERIAL} Check the engine manufacturer's manual or ask a certificated mechanic.`;
+    return `${NOT_IN_MATERIAL} Check the aircraft's own manuals or ask a certificated mechanic or flight instructor.`;
   }
 
   bestPassage(text) {
@@ -142,9 +149,13 @@ export class MockAdapter {
   }
 
   help() {
+    const k = this.coach.k;
+    const [first, ...rest] = k.procedures.map((p) => p.title.toLowerCase());
+    const part = k.parts.find((p) => /s$/.test(p.name)) || k.parts[0];
+    const where = /s$/.test(part.name) ? 'where are the' : 'where is the';
     return (
-      'Say "start spark plug inspection" (or the 100-hour, oil and filter, or propeller inspection), ' +
-      'then "next", "back", "explain" or "source". Name a part ("where are the magnetos?") to fly to it, ' +
+      `Say "start ${first}"${rest.length ? ` (or the ${rest.join(', or the ')})` : ''}, ` +
+      `then "next", "back", "explain" or "source". Name a part ("${where} ${part.name.toLowerCase()}?") to fly to it, ` +
       'or say "quiz me" and click the part I name.'
     );
   }

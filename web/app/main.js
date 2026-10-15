@@ -1,5 +1,7 @@
 // Wiring: training material -> coach -> instructor adapter, with the 3D stage and the panel as the
 // coach's "stage". Runs the same in the DisplayXR Browser (woven 3D) and in any other browser (2D).
+// One training per page load (?training=<id>, see web/data/trainings.json): the woven canvas is one
+// per document, so switching lessons reloads the page.
 
 import { Knowledge, NOT_IN_MATERIAL } from './instructor/knowledge.js';
 import { Coach } from './instructor/session.js';
@@ -16,10 +18,29 @@ import { canListen, listenOnce, speak, stopSpeaking } from './voice.js';
 const $ = (id) => document.getElementById(id);
 const params = new URLSearchParams(location.search);
 
-const k = await Knowledge.load((f) => fetch(f).then((r) => {
+const fetchJson = (f) => fetch(f).then((r) => {
   if (!r.ok) throw new Error(`${f}: ${r.status}`);
   return r.json();
-}));
+});
+const catalog = await Knowledge.catalog(fetchJson);
+const wanted = catalog.trainings.some((t) => t.id === params.get('training')) ? params.get('training') : catalog.default;
+const k = await Knowledge.load(fetchJson, 'data/', wanted);
+
+// ── lesson picker ───────────────────────────────────────────────────────────────────────────
+for (const t of catalog.trainings) $('training').add(new Option(t.title, t.id));
+$('training').value = k.training.id;
+$('training').addEventListener('change', (e) => {
+  const next = new URL(location.href);
+  next.searchParams.set('training', e.target.value);
+  next.searchParams.delete('asset');
+  next.searchParams.delete('scan');
+  location.assign(next);
+});
+$('lessonName').textContent = k.training.title;
+document.title = `${k.training.title} · 3D Aviation Coach`;
+const sample = k.parts.find((p) => /s$/.test(p.name)) || k.parts[0];
+$('question').placeholder = `Ask the instructor, e.g. "where ${/s$/.test(sample.name) ? 'are' : 'is'} the ${sample.name.toLowerCase()}?"`;
+$('view').setAttribute('aria-label', `3D view of ${k.training.subject}. Drag to look around, scroll to zoom, click a part.`);
 
 // ── 3D stage ────────────────────────────────────────────────────────────────────────────────
 const scene = new Scene3D($('view'), k);
@@ -29,6 +50,7 @@ session.firstWoven.then(() => $('poster').setAttribute('hidden', '')); // cut, n
 setStatus();
 
 async function loadAsset() {
+  if (!k.training.scans) return useAnchors(scene.loadBuiltin()); // scans are calibrated for the engine lesson
   const want = params.get('asset');
   const scanUrl = params.get('scan');
   try {
@@ -50,10 +72,10 @@ async function loadAsset() {
       }
     }
   } catch (err) {
-    console.warn('[coach] asset failed to load, using the trainer engine:', err);
-    addMessage('system', `Could not load the scan (${err.message}); showing the built-in trainer engine.`);
+    console.warn('[coach] asset failed to load, using the built-in model:', err);
+    addMessage('system', `Could not load the scan (${err.message}); showing the built-in model.`);
   }
-  return useAnchors(scene.loadTrainerEngine());
+  return useAnchors(scene.loadBuiltin());
 }
 
 function loadByType(entry, url) {
@@ -127,6 +149,25 @@ $('labelsToggle').addEventListener('click', (e) => {
   e.currentTarget.setAttribute('aria-pressed', String(showLabels));
 });
 $('home').addEventListener('click', () => scene.home());
+
+// Depth: how strong the stereo is (1 = default). Kept per browser; only matters on a 3D display.
+const DEPTH_KEY = 'coach.depth';
+let depth = 1;
+try {
+  depth = Number(localStorage.getItem(DEPTH_KEY)) || 1;
+} catch {
+  /* private window */
+}
+$('depth').value = String(depth);
+scene.setDepth(depth);
+$('depth').addEventListener('input', (e) => {
+  scene.setDepth(Number(e.target.value));
+  try {
+    localStorage.setItem(DEPTH_KEY, e.target.value);
+  } catch {
+    /* private window */
+  }
+});
 
 // ── the coach and its stage ──────────────────────────────────────────────────────────────────
 const coach = new Coach(k, {
@@ -338,7 +379,7 @@ addEventListener('keydown', (e) => {
 scene.on('pick', (pick) => {
   if (calibrator.active) return calibrator.place(pick);
   if (coach.quiz) {
-    if (!pick.partId) return addMessage('system', 'Click on a part of the engine.');
+    if (!pick.partId) return addMessage('system', 'Click on a part of the model.');
     const r = instructor.pick(pick.partId);
     addMessage('you', `(clicked ${k.part(pick.partId).name.toLowerCase()})`);
     showReply(r);
@@ -353,6 +394,6 @@ scene.on('pick', (pick) => {
 });
 
 // ── first run ────────────────────────────────────────────────────────────────────────────────
-addMessage('coach', 'Welcome to the training station. Pick a procedure above, ask about any part, or say "quiz me". This is a training demo, not approved maintenance data.');
-console.log('[coach] ready:', { asset: asset.id, woven: scene.woven, adapters: Object.keys(ADAPTERS).filter((a) => ADAPTERS[a].available), notInMaterial: NOT_IN_MATERIAL });
+addMessage('coach', `Welcome to the training station: ${k.training.title.toLowerCase()}. Pick a procedure above, ask about any part, or say "quiz me". Other lessons are in the Training menu. This is a training demo, not approved maintenance data.`);
+console.log('[coach] ready:', { training: k.training.id, asset: asset.id, woven: scene.woven, adapters: Object.keys(ADAPTERS).filter((a) => ADAPTERS[a].available), notInMaterial: NOT_IN_MATERIAL });
 window.__coach = { coach, scene, instructor, k }; // debug / harness hook

@@ -10,11 +10,14 @@ export const dataDir = join(dirname(fileURLToPath(import.meta.url)), '..', 'web'
 
 export const readData = async (f) => JSON.parse(await readFile(join(dataDir, f), 'utf8'));
 
-export const loadKnowledge = () => Knowledge.load(readData, '');
+/** Every training in trainings.json. */
+export const trainings = (await readData('trainings.json')).trainings;
+
+export const loadKnowledge = (training = 'engine') => Knowledge.load(readData, '', training);
 
 /** A coach with a recording stage, plus a mock-backed instructor. */
-export async function mockRig() {
-  const k = await loadKnowledge();
+export async function mockRig(training = 'engine') {
+  const k = await loadKnowledge(training);
   const log = [];
   const stage = {
     focusPart: (id) => log.push(['focus', id]),

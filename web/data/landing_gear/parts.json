@@ -1,0 +1,174 @@
+{
+  "version": 1,
+  "units": "metres",
+  "frame": "Bench frame: +x to the right seen from the front of the bench, +y up, +z toward the viewer. Main gear (a left leg, wheel outboard) on the left, nose gear on the right. Tires stand on y = 0.",
+  "note": "anchor = where the label and fly-to point sit on the built-in gear bench (web/app/models/gear.js).",
+  "parts": [
+    {
+      "id": "gear_attach",
+      "name": "Gear attach fittings",
+      "aliases": ["attach fitting", "attachment", "attach points", "gear box", "mount", "gear mount", "mounting bolts", "attach bolts"],
+      "anchor": [-0.14, 0.86, 0.155],
+      "viewDir": [0.3, 0.35, 1],
+      "focusDist": 1,
+      "description": "Where the gear transitions into the airplane's structure. The bolts are checked for security, and the skin and structure around them for wrinkles, damage and corrosion.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(1)", "topic": "all units: condition and attachment" },
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    },
+    {
+      "id": "main_gear_leg",
+      "name": "Spring-steel gear leg",
+      "aliases": ["gear leg", "leg", "main gear leg", "spring gear", "spring steel", "leaf spring", "main strut", "main gear"],
+      "anchor": [-0.47, 0.55, 0.03],
+      "viewDir": [0.1, 0.3, 1],
+      "focusDist": 1,
+      "description": "A flexible spring-steel strut. It takes the impact of landing and returns it to the airframe at a rate that is not harmful; it is checked for distortion, cracks and corrosion.",
+      "sources": [
+        { "doc": "amta", "ch": "13", "page": "13-6", "section": "Leaf-Type Spring Gear" },
+        { "doc": "cfr43d", "loc": "(e)(3)", "topic": "members: wear, fatigue, distortion" }
+      ]
+    },
+    {
+      "id": "main_wheel",
+      "name": "Main wheel",
+      "aliases": ["wheel", "wheels", "rim", "wheel halves", "wheel half", "tie bolts", "valve stem", "hub"],
+      "anchor": [-0.868, 0.281, 0.0325],
+      "viewDir": [-1, 0.35, 0.3],
+      "focusDist": 0.8,
+      "description": "A split wheel: two halves held together by tie bolts, with the valve stem on the outboard half. Checked for cracks, flaked paint and signs of overheating.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(7)", "topic": "wheels" },
+        { "doc": "amta", "ch": "13", "page": "13-36", "section": "Wheel Inspection" },
+        { "doc": "amta", "ch": "13", "page": "13-41", "section": "Wheel Tie Bolt Inspection" }
+      ]
+    },
+    {
+      "id": "wheel_bearings",
+      "name": "Axle nut and wheel bearings",
+      "aliases": ["bearing", "bearings", "wheel bearing", "wheel bearings", "axle nut", "axle", "hub cap", "hubcap"],
+      "anchor": [-0.895, 0.225, 0],
+      "viewDir": [-1, 0.2, 0.25],
+      "focusDist": 0.7,
+      "description": "Tapered roller bearings behind the hub cap, held by the axle nut. A loose nut lets the wheel move and the bearing cups spin; an over-tight one keeps the bearing from carrying the load properly.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(7)", "topic": "condition of bearings" },
+        { "doc": "amta", "ch": "13", "page": "13-36", "section": "Axle Nut Torque" },
+        { "doc": "amta", "ch": "13", "page": "13-38", "section": "Wheel Bearing Inspection" }
+      ]
+    },
+    {
+      "id": "main_tire",
+      "name": "Main tire",
+      "aliases": ["tire", "tires", "tyre", "tread", "sidewall", "main tires"],
+      "anchor": [-0.8, 0.225, 0.225],
+      "viewDir": [-0.25, 0.25, 1],
+      "focusDist": 0.9,
+      "description": "Checked for inflation, tread wear and condition, and sidewall condition. The correct pressure comes from the aircraft manufacturer's data, not from the tire's sidewall or how it looks.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(8)", "topic": "tires" },
+        { "doc": "amta", "ch": "13", "page": "13-78", "section": "Tire Inspection on the Aircraft; Inflation" },
+        { "doc": "amta", "ch": "13", "page": "13-79", "section": "Tread Condition" },
+        { "doc": "amta", "ch": "13", "page": "13-83", "section": "Sidewall Condition" }
+      ]
+    },
+    {
+      "id": "brake_disc",
+      "name": "Brake disc",
+      "aliases": ["disc", "disk", "rotor", "brake rotor", "brake disk"],
+      "anchor": [-0.71, 0.17, 0.06],
+      "viewDir": [0.8, 0.1, 0.6],
+      "focusDist": 0.85,
+      "description": "The disc turns with the wheel and is squeezed by the caliper's linings. It must not be warped, and its surface treatment must not be damaged.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(9)", "topic": "brakes" },
+        { "doc": "amta", "ch": "13", "page": "13-72", "section": "Brake Malfunctions and Damage" }
+      ]
+    },
+    {
+      "id": "brake_caliper",
+      "name": "Brake caliper and linings",
+      "aliases": ["caliper", "brake", "brakes", "brake linings", "linings", "lining", "brake pads", "pads", "wear pin", "wear indicator"],
+      "anchor": [-0.68, 0.3, -0.06],
+      "viewDir": [0.8, 0.3, -0.5],
+      "focusDist": 0.8,
+      "description": "The caliper holds the brake linings against the disc. Lining wear is checked against the manufacturer's limits, on many brakes with a built-in wear indicator pin, along with leaks and bolt security.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(9)", "topic": "brakes: adjustment" },
+        { "doc": "amta", "ch": "13", "page": "13-66", "section": "Brake Inspection and Service; Lining Wear" },
+        { "doc": "amta", "ch": "13", "page": "13-67", "section": "Lining Wear" }
+      ]
+    },
+    {
+      "id": "brake_line",
+      "name": "Brake line",
+      "aliases": ["brake lines", "hydraulic line", "hydraulic lines", "brake hose", "line", "lines", "hose"],
+      "anchor": [-0.5, 0.57, -0.052],
+      "viewDir": [0.15, 0.3, -1],
+      "focusDist": 0.9,
+      "description": "The hydraulic line from the master cylinder runs down the gear leg to the caliper. It must be secure, dry and free of leaks, abrasion and deep cracking.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(5)", "topic": "hydraulic lines: leakage" },
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    },
+    {
+      "id": "nose_strut",
+      "name": "Nose gear shock strut",
+      "aliases": ["oleo", "oleo strut", "shock strut", "strut", "nose strut", "piston", "strut extension", "air valve", "shock absorber"],
+      "anchor": [0.521, 0.46, 0.021],
+      "viewDir": [0.7, 0.1, 0.7],
+      "focusDist": 0.85,
+      "description": "An air-and-oil (oleo) strut: hydraulic fluid and compressed air or nitrogen absorb the landing loads. Inspected for fluid level, leaks at the packing gland, a clean exposed piston, and the extension the manufacturer specifies.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(2)", "topic": "shock absorbing devices: oleo fluid level" },
+        { "doc": "amta", "ch": "13", "page": "13-7", "section": "Shock Struts" },
+        { "doc": "amta", "ch": "13", "page": "13-12", "section": "Servicing Shock Struts" },
+        { "doc": "amta", "ch": "13", "page": "13-13", "section": "Servicing Shock Struts" }
+      ]
+    },
+    {
+      "id": "torque_links",
+      "name": "Torque links",
+      "aliases": ["torque link", "scissors", "scissor links", "links", "torque arms"],
+      "anchor": [0.5, 0.49, 0.132],
+      "viewDir": [0.25, 0.15, 1],
+      "focusDist": 0.8,
+      "description": "Two hinged links between the strut cylinder and the piston. They let the piston slide but keep it from turning, so the wheel stays aligned. Checked for cracks, secure fasteners and minimal free play.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(3)", "topic": "linkages: wear, fatigue, distortion" },
+        { "doc": "amta", "ch": "13", "page": "13-9", "section": "Shock Struts (torque links)" },
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    },
+    {
+      "id": "shimmy_damper",
+      "name": "Shimmy damper",
+      "aliases": ["damper", "shimmy", "steering damper", "shimmy dampener"],
+      "anchor": [0.585, 0.7, -0.03],
+      "viewDir": [1, 0.25, 0.2],
+      "focusDist": 0.8,
+      "description": "A small damper on the nose gear that damps oscillations of the nose wheel. Checked for secure attachment and, on hydraulic types, for leaks; some types use an elastomer instead of fluid.",
+      "sources": [
+        { "doc": "amta", "ch": "13", "page": "13-30", "section": "Shimmy Dampers" },
+        { "doc": "amta", "ch": "13", "page": "13-32", "section": "Piston-Type" },
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    },
+    {
+      "id": "nose_tire",
+      "name": "Nose tire",
+      "aliases": ["nose wheel", "nosewheel", "nose tyre", "fork", "nose fork"],
+      "anchor": [0.5, 0.175, 0.175],
+      "viewDir": [0.3, 0.3, 1],
+      "focusDist": 0.8,
+      "description": "The nose wheel and tire in their fork. Same tire and wheel checks as the mains; the fork is checked for cracks and secure fasteners.",
+      "sources": [
+        { "doc": "cfr43d", "loc": "(e)(8)", "topic": "tires" },
+        { "doc": "amta", "ch": "13", "page": "13-78", "section": "Tire Inspection on the Aircraft" },
+        { "doc": "afh", "ch": "2", "page": "2-11", "section": "Landing Gear, Tires, and Brakes" }
+      ]
+    }
+  ]
+}
